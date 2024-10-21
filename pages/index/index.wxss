@@ -48,9 +48,9 @@ page {
 .avatar-wrapper {
   padding: 0;
   width: 56px !important;
-  border-radius: 8px;
   margin-top: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 15px;
+  border-radius: 50%;
 }
 .image_chname{
   width: 40rpx;
@@ -60,6 +60,7 @@ page {
   display: block;
   width: 56px;
   height: 56px;
+  border-radius: 50%;
 }
 
 .nickname-wrapper {

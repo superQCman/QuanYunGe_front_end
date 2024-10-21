@@ -1,0 +1,67 @@
+/* pages/classify/classify.wxss */
+.coin-lable{
+  background-color: #f7f7f7;
+  display: flex;
+  justify-content: space-between;
+}
+.coin-lable .coin-left{
+  border-radius: 10rpx;
+  width: 20%;
+  background-color: #fff;
+  text-align: center;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+.coin-lable .coin-right{
+  width: 80%;
+  height: 100%;
+
+  overflow-y: scroll;
+  padding-bottom: 1.2rem;
+}
+
+.coin-lable .coin-right .coin-box{
+  border-radius: 10rpx;
+  background: #fff;
+  padding-left : 10rpx;
+  padding-right : 10rpx;
+}
+
+.coin-lable .coin-right .history-info{
+  margin: 20rpx;
+  line-height: 44rpx;
+  font-size: 26rpx;
+}
+
+.p {
+  display: block;  /* 元素作为块级元素显示 */
+  margin-top: 1em;  /* 上外边距 */
+  margin-bottom: 1em;  /* 下外边距 */
+  margin-left: 0px;  /* 左外边距 */
+  margin-right: 0px;  /* 右外边距 */
+  unicode-bidi: isolate;  /* 保持文本的双向显示处理 */
+}
+
+
+.coin-detail .introduce, .coin-box .introduce {
+  display: -webkit-box;  /* 小程序支持 -webkit-box */
+  -webkit-line-clamp: 4;  /* 限制显示三行 */
+  -webkit-box-orient: vertical;  /* 垂直排列 */
+  overflow: hidden;  /* 隐藏超出部分 */
+  text-overflow: ellipsis;  /* 超出部分显示省略号 */
+}
+
+.coin-detail .more, .coin-box .more {
+  display: block;
+}
+
+.see-both{
+  color: red;
+}
+.li{
+  display: list-item;
+  text-align: -webkit-match-parent;
+  unicode-bidi: isolate;
+  margin: 10rpx;
+}

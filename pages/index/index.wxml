@@ -3,9 +3,9 @@
   <BackButton style="opacity:0;height: 0;"></BackButton>
   <Background>
     <!-- 添加 Home 图标按钮 -->
-    <button class="home-button" bindtap="goHome" style="width: 81rpx; height: 70rpx; display: block; box-sizing: border-box; left: -333rpx; top: 0rpx; position: relative" wx:if="{{hasLogIn}}">
+    <!-- <button class="home-button" bindtap="goHome" style="width: 81rpx; height: 70rpx; display: block; box-sizing: border-box; left: -333rpx; top: 0rpx; position: relative" wx:if="{{hasLogIn}}">
       <image class="home-icon" src="{{userInfo.avatarUrl}}" style="position: relative; left: -20rpx; top: 0rpx" wx:if="{{hasLogIn}}"></image>
-    </button>
+    </button> -->
     <Logo> </Logo>
     <CityImpress></CityImpress>
     <view class="container" wx:if="{{!mainpage}}">
@@ -24,9 +24,10 @@
           <view wx:else> 请使用2.10.4及以上版本基础库 </view>
         </block>
         <block wx:else>
-          <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-          <text class="userinfo-nickname" wx:if="{{!chname}}">{{userInfo.nickName}}</text>
-          <image class="image_chname" src="../../image/chname.svg" bind:tap="chName" wx:if="{{!chname}}" />
+          <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+            <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+          </button>
+          <text bind:tap="chName" wx:if="{{!chname}}">{{userInfo.nickName}}</text>
           <view class="nickname-wrapper" wx:else>
             <text class="nickname-label">昵称</text>
             <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />

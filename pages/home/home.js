@@ -1,20 +1,24 @@
+const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0';
 Page({
   data: {
     userInfo: {
-      avatarUrl: '',
-      nickName: '',
+      avatarUrl: defaultAvatarUrl,
+      nickName: '用户',
+      openId: ''
     },
     chname: false
   },
 
   onInputChange(e) {
     const nickName = e.detail.value
-    const {
-      avatarUrl
-    } = this.data.userInfo
+    const app = getApp();
+    // const {
+    //   avatarUrl
+    // } = app.globalData.avatarUrl;
     if(nickName.trim() !== ""){
+      app.globalData.userInfo.nickName = nickName;  
       this.setData({
-        "userInfo.nickName": nickName,
+        'userInfo.nickName':nickName,
         chname : false
       })
       // 保存用户信息到本地
@@ -34,13 +38,36 @@ Page({
     wx.setStorageSync('nickName', this.data.userInfo.nickName);
     console.log("nickName:", this.data.userInfo.nickName)
   },
-  onLoad: function (e) {
+  onShow() {
+    // 每次页面显示时，更新页面的数据
+    const app = getApp();
     this.setData({
-      'userInfo.avatarUrl': e.avatarUrl,
-      'userInfo.nickName': e.nickName
-    })
-    console.log('avatarUrl:', e.avatarUrl)
+      userInfo: app.globalData.userInfo // 从全局变量获取最新的 userInfo
+    });
+    if (this.data.userInfo.avatarUrl.trim() === defaultAvatarUrl || this.data.userInfo.nickName.trim() ===""){
+      wx.showModal({
+        title: '提示',
+        content: '请先登录',
+        showCancel: false,
+        complete: (res) => {      
+          if (res.confirm) {
+            wx.reLaunch({
+              url: '/pages/index/index',
+            })
+          }
+        }
+      })
+    }
   },
+  onLoad: function () {
+    const app = getApp();
+    console.log("defaultAvatarUrl:",defaultAvatarUrl)
+    // 设置页面的初始数据
+    this.setData({
+      userInfo: app.globalData.userInfo
+    });
+  },
+
   onShareAppMessage() {
     return {};
   },
@@ -52,15 +79,13 @@ Page({
     console.log('chname:', this.data.chname)
   },
   onChooseAvatar(e) {
+    const app = getApp();
     const {
       avatarUrl
-    } = e.detail
-    const {
-      nickName
-    } = this.data.userInfo
+    } = e.detail;
+    app.globalData.userInfo.avatarUrl = avatarUrl;
     this.setData({
-      "userInfo.avatarUrl": avatarUrl,
-      hasUserInfo: nickName && avatarUrl && avatarUrl !== defaultAvatarUrl,
+      "userInfo.avatarUrl": avatarUrl
     })
     this.saveAvatarUrl();
   },
@@ -68,19 +93,6 @@ Page({
     wx.setStorageSync('avatarUrl', this.data.userInfo.avatarUrl);
   },
   back() {
-    // 获取页面栈
-    let pages = getCurrentPages();
-    if (pages.length > 1) {
-      // 获取上一个页面
-      let prevPage = pages[pages.length - 2];
-
-      // 直接修改上一个页面的 data 中的数据
-      prevPage.setData({
-        'userInfo.avatarUrl': this.data.userInfo.avatarUrl,
-        'userInfo.nickName': this.data.userInfo.nickName,
-      });
-    }
-
     // 返回上一个页面
     wx.navigateBack({});
   },

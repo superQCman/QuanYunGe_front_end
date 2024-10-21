@@ -1,0 +1,46 @@
+<!--pages/classify/classify.wxml-->
+<BackButton style="opacity:0;height: 0;" ></BackButton>
+<view class="coin-lable">
+  <view class="coin-left">
+    <view class="p">
+      <text>先秦</text> 
+    </view>
+    <view class="p">
+      <text>秦汉</text>
+    </view>
+    <view class="p">
+      <text>三国两晋南北朝</text>
+    </view>
+    <view class="p">
+      <text>隋唐\n五代十国</text>
+    </view>
+    <view class="p">
+      <text>宋</text>
+    </view>
+    <view class="p">
+      <text>辽金\n西夏元</text>
+    </view>
+    <view class="p">
+      <text>明</text>
+    </view>
+    <view class="p">
+      <text>清</text>
+    </view>
+    <view class="p">
+      <text>民国</text>
+    </view>
+  </view>
+  <view class="coin-right">
+    <view class="coin-box history-info">
+      <text class="introduce {{isMore ? 'more' : ''}}">
+        隋唐时期（公元581-907年）是中国又一个统一、繁荣时期，隋五铢、初唐至盛唐的开元通宝，隋唐时期（公元581-907年）是中国又一个统一、繁荣时期，隋五铢、初唐至盛唐的开元通宝，数量虽大但个个精美，部分开元钱的字口如刀削斧劈，令人叹为观止。唐朝经历安史之乱后国力渐衰，五代十国时期（公元907-960年）中国又陷入分裂、战乱，朝代更替频繁，这一时期钱币特点是铸量少、工艺粗、品种多、珍品多，其中也不乏精美的（如后周和南唐的钱币），其中南唐钱币最早出现了“对钱”（即两枚钱币仅书体不同，钱文、大小、铜质均相同），成为北宋时期对钱大量出现的先声。
+      </text>
+      <view class="see-both" bindtap="toggleMore">{{isMore ? '收起详情' : '展开详情'}}</view>
+    </view>
+    <view style="margin: 30rpx;">
+      <view wx:for="{{items}}" wx:key="index" class="li">
+        {{item}}
+      </view>
+    </view>
+  </view>
+</view>

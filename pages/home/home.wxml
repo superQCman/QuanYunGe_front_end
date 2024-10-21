@@ -1,13 +1,13 @@
-<BackButton bind:back="back"></BackButton>
+<BackButton style="opacity:0;height: 0;"></BackButton>
 <view class="flex-col page">
   <view class="flex-col flex-1 group_2">
     <view class="flex-row items-center section">
       <!-- <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar"> -->
-        <image class="image_5" src="{{userInfo.avatarUrl}}" />
+        <image class="image_5" src="{{userInfo.avatarUrl}}" ></image>
       <!-- </button> -->
       <text class="font_1 text_3 ml-16" wx:if="{{!chname}}">{{userInfo.nickName}} </text>
-      <image class="image_chname" src="../../image/chname.svg"  bind:tap="chName" wx:if="{{!chname}}"/>
-      <view class="nickname-wrapper" wx:else>
+      <image class="image_chname" src="../../image/chname.svg"  bind:tap="chName" wx:if="{{!chname && userInfo.nickName}}"/>
+      <view class="nickname-wrapper" wx:if="{{chname}}">
         <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
       </view>
     </view>

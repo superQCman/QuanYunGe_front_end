@@ -45,14 +45,18 @@ Page({
   // 页面加载时读取本地存储的用户信息
   onLoad() {
     this.getConfig();
+  
     const nickName = wx.getStorageSync('nickName');
     const avatarUrl = wx.getStorageSync('avatarUrl');
     const openId = wx.getStorageSync('openid');
-    console.log("openId:",openId);
-    if (nickName && avatarUrl ) {
+  
+    console.log("openId:", openId);
+  
+    if (nickName && avatarUrl) {
+      // 更新页面的 data 中的 userInfo
       this.setData({
-        "userInfo.nickName":nickName,
-        "userInfo.avatarUrl":avatarUrl,
+        "userInfo.nickName": nickName,
+        "userInfo.avatarUrl": avatarUrl,
         "userInfo.openId": openId,
         hasUserInfo: nickName && avatarUrl && avatarUrl !== defaultAvatarUrl
       });
@@ -110,6 +114,9 @@ Page({
     const {
       openId
     } = this.data.userInfo;
+    const {
+      avatarUrl
+    } = this.data.userInfo;
     if (nickName.trim() !== "" && this.data.userInfo.avatarUrl !== defaultAvatarUrl) {
       console.log("有昵称输入：" + nickName);
       this.setData({
@@ -118,9 +125,16 @@ Page({
       try {
         // 调用 sendUsername 发送用户名到后端
         const response = await sendUsername(nickName, openId);
+        const app = getApp();
+        // 同步更新全局的 userInfo
+        app.globalData.userInfo = {
+          nickName: nickName,
+          avatarUrl: avatarUrl,
+          openId: openId
+        };
 
+        console.log("全局 userInfo:", app.globalData.userInfo);
         console.log('后端返回数据:', response);
-
       } catch (error) {
         console.error('提交用户名失败:', error);
       }
