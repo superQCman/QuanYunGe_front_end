@@ -1,0 +1,12 @@
+.background .background-image {
+  width: 100%;
+  height: 100%;
+  filter: blur(70px);
+  border-radius: 559.633px;
+  position: absolute;
+  z-index: -1;
+}
+
+.background {
+  position: relative; /* 设置相对定位，使 ::before 伪元素相对于这个元素定位 */
+}

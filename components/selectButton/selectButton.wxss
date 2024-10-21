@@ -1,0 +1,32 @@
+.select-button-container{
+  width: auto;
+  height: 112rpx;
+  border-radius: 26rpx;
+  padding: 30rpx 0;
+  box-sizing: border-box;
+  display: inline-block;
+  backdrop-filter: blur(9.5px);
+  padding-right: 36rpx;
+}
+
+.select-button-number{
+  margin-left: 36rpx;
+  width: 50rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 25rpx;
+  background-color: white;
+  text-align: center;
+  display: inline-block;
+}
+
+.select-button-name{
+  margin-left: 22rpx;
+  width: auto;
+  height: 50rpx;
+  border-radius: 25rpx;
+  text-align: center;
+  color: white;
+  line-height: 50rpx;
+  display: inline-block;
+}

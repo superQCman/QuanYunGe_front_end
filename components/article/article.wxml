@@ -1,0 +1,25 @@
+<view class=" article">
+  
+  <view class="article-header">
+  <image src="../../image/back.svg" class=" article-back" bindtap="back"></image>
+    <view class="article-icon">
+      <ArchiIcon imgUrl="{{article.logo_path?baseUrl+article.logo_path:''}}"></ArchiIcon>
+    </view>
+    <view class="archi-article">{{article.name}}</view>
+  </view>
+  <view class="article-main">
+    <view class=" article-image">
+    <image src="{{article.image_path?baseUrl+article.image_path:''}}" mode="widthFix"></image>
+  </view>
+  <view class=" article-detail-title">
+    <view class=" article-block"></view>
+    <view class=" article-detail-desc">详情介绍</view>
+    <view class=" article-block"></view>
+  </view>
+  <view class=" article-detail">
+    <view>
+      <image src="../../image/detailIcon.svg"></image>{{article.descri}}
+    </view>
+  </view>
+  </view>
+</view>

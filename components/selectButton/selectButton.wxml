@@ -1,0 +1,4 @@
+<view class="select-button-container" style="background: {{backgroundColor}};" bindtap="click">
+  <view class="select-button-number" style="color: {{color}};">{{number}}</view>
+  <view class="select-button-name">{{name}}</view>
+</view>

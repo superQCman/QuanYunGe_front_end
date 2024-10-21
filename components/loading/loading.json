@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "Logo":"../logo/logo",
+    "Name": "/components/name/name",
+    "BackButton": "/components/backButton/backButton"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+    "SelectButton": "/components/selectButton/selectButton",
+    "BackButton":"/components/backButton/backButton",
+    "Background":"/components/background/background",
+    "CityImpress":"/components/cityImpress/cityImpress",
+    "Logo":"/components/logo/logo",
+    "Loading":"/components/loading/loading",
+    "Article":"/components/article/article"
+  }
+}

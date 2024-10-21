@@ -1,0 +1,147 @@
+.nickname-input {
+  margin-left: 20rpx;
+  flex: 1;
+}
+.nickname-wrapper {
+  display: flex;
+  width: 80%;
+  padding: 16px;
+  box-sizing: border-box;
+  border-top: .5px solid rgba(0, 0, 0, 0.1);
+  border-bottom: .5px solid rgba(0, 0, 0, 0.1);
+  color: black;
+}
+.nickname-label {
+  width: 105px;
+}
+.mt-9 {
+  margin-top: 18rpx;
+}
+.ml-17 {
+  margin-left: 34rpx;
+}
+.ml-19 {
+  margin-left: 38rpx;
+}
+.page {
+  background-color: #f2f2f2;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+}
+.font_1 {
+  font-size: 34rpx;
+  font-family: 'PingFangSC-Semibold';
+  line-height: 48rpx;
+  font-weight: 600;
+  color: #000000;
+}
+.group_2 {
+  padding: 32rpx 0 126rpx;
+  overflow-y: auto;
+}
+.section {
+  padding: 32rpx 40rpx;
+  background-color: #ffffff;
+}
+.image_5 {
+  border-radius: 50%;
+  width: 128rpx;
+  height: 128rpx;
+}
+.text_3 {
+  font-size: 36rpx;
+  line-height: 50rpx;
+}
+.section_2 {
+  padding: 40rpx 38rpx 30rpx;
+  background-color: #ffffff;
+}
+.text_4 {
+  color: #000000;
+  font-size: 30rpx;
+  font-family: 'PingFangSC-Semibold';
+  font-weight: 600;
+  line-height: 42rpx;
+}
+.equal-division {
+  align-self: stretch;
+}
+.equal-division-item {
+  flex: 1 1 168rpx;
+}
+.group_3 {
+  padding: 11rpx 0 10rpx;
+}
+.image_6 {
+  width: 64rpx;
+  height: 64rpx;
+}
+.font_2 {
+  font-size: 26rpx;
+  font-family: 'PingFangSC-Regular';
+  line-height: 36rpx;
+  color: #000000;
+}
+.equal-division-item_2 {
+  padding: 11rpx 0 10rpx;
+}
+.group_4 {
+  padding: 11rpx 0 10rpx;
+}
+.section_1 {
+  padding: 26rpx 40rpx;
+  background-color: #ffffff;
+}
+.image_chname{
+  width: 40rpx;
+  height: 40rpx;
+}
+.image_7 {
+  width: 50rpx;
+  height: 50rpx;
+}
+.font_3 {
+  font-size: 34rpx;
+  font-family: 'PingFangSC-Regular';
+  line-height: 48rpx;
+  color: #000000;
+}
+.group_6 {
+  padding: 0 2rpx;
+}
+.image_8 {
+  width: 50rpx;
+  height: 50rpx;
+}
+.group_7 {
+  padding: 0 4rpx;
+}
+.image_9 {
+  width: 45rpx;
+  height: 45rpx;
+}
+.section_3 {
+  padding: 26rpx 42rpx;
+  background-color: #ffffff;
+}
+.image_10 {
+  width: 44rpx;
+  height: 44rpx;
+}
+.group_8 {
+  padding: 0 3.38rpx;
+}
+.image_11 {
+  width: 43rpx;
+  height: 50rpx;
+}
+.group_9 {
+  padding: 0 2.44rpx;
+}
+.image_12 {
+  margin-bottom: 2.5rpx;
+  width: 45rpx;
+  height: 50rpx;
+}

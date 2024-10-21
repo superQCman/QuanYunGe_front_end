@@ -1,0 +1,99 @@
+.article {
+  background-color: white;
+  margin: 0 auto;
+  border-radius: 30rpx;
+  position: relative;
+  overflow: scroll;
+  cursor:default;
+  height: 100%;
+
+}
+.article::-webkit-scrollbar {
+  display: none;
+}
+
+.article-back {
+  width: 18rpx;
+  height: 35rpx;
+  position: absolute;
+  padding:30rpx 30rpx;
+}
+.article-header{
+  padding-bottom: 16rpx;
+  position: fixed;
+  width: 100%;
+  background: white;
+}
+.article-main{
+  margin-top: 178rpx;
+}
+.article-icon {
+  width: 80rpx;
+  height: 84rpx;
+  border-radius: 14rpx;
+  margin: 0 auto;
+  padding-top: 18rpx;
+}
+
+.archi-article {
+  text-align: center;
+  color: #5926C4;
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-top: 14rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+}
+
+.article-image {
+  width: 100%;
+  padding: 0 72rpx;
+  box-sizing: border-box;
+  margin-top: 15rpx;
+}
+
+.article-image image {
+  width: 100%;
+}
+
+.article-detail-desc {
+  color: #5926C4;
+  font-size: 30rpx;
+  font-weight: 600;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 10rpx;
+}
+
+.article-detail-title {
+  text-align: center;
+  margin-top: 24rpx;
+}
+
+.article-block {
+  width: 14rpx;
+  height: 14rpx;
+  background-color: #FF8F15;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.article-detail {
+  color: #1B1B1B;
+  font-size: 20rpx;
+  font-weight: 600;
+  padding: 14rpx 36rpx;  
+}
+
+.article-detail view{
+  margin-bottom: 22rpx;
+}
+
+.article-detail image{
+  width: 30rpx;
+  height: 30rpx;
+  display: inline-block;
+  vertical-align:bottom;
+  margin-right: 10rpx;
+  margin-bottom: 6rpx;
+}

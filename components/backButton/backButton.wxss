@@ -1,0 +1,15 @@
+.back{
+  width: 80rpx;
+  position: relative;
+  height: 80rpx;
+  border-radius: 50%;
+  z-index: 1000;
+}
+
+.back-image{
+  height: 34rpx;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

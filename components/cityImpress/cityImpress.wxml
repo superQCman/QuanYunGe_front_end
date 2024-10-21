@@ -1,0 +1,5 @@
+<view class="impress">
+  <view class="impress-title">古钱币</view>
+  <image src="../../image/AI.svg" class="background-image"></image>
+  <view class="impress-title">探趣</view>
+</view>

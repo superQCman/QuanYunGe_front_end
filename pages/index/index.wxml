@@ -1,0 +1,56 @@
+<!--index.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+  <BackButton style="opacity:0;height: 0;"></BackButton>
+  <Background>
+    <!-- 添加 Home 图标按钮 -->
+    <button class="home-button" bindtap="goHome" style="width: 81rpx; height: 70rpx; display: block; box-sizing: border-box; left: -333rpx; top: 0rpx; position: relative" wx:if="{{hasLogIn}}">
+      <image class="home-icon" src="{{userInfo.avatarUrl}}" style="position: relative; left: -20rpx; top: 0rpx" wx:if="{{hasLogIn}}"></image>
+    </button>
+    <Logo> </Logo>
+    <CityImpress></CityImpress>
+    <view class="container" wx:if="{{!mainpage}}">
+      <view class="userinfo">
+        <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
+          <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+            <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+          </button>
+          <view class="nickname-wrapper">
+            <text class="nickname-label">昵称</text>
+            <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
+          </view>
+        </block>
+        <block wx:elif="{{!hasUserInfo}}">
+          <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+          <view wx:else> 请使用2.10.4及以上版本基础库 </view>
+        </block>
+        <block wx:else>
+          <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+          <text class="userinfo-nickname" wx:if="{{!chname}}">{{userInfo.nickName}}</text>
+          <image class="image_chname" src="../../image/chname.svg" bind:tap="chName" wx:if="{{!chname}}" />
+          <view class="nickname-wrapper" wx:else>
+            <text class="nickname-label">昵称</text>
+            <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
+          </view>
+        </block>
+      </view>
+      <view class="usermotto">
+        <button type="primary" bind:tap="LogIn">{{motto}}</button>
+      </view>
+    </view>
+    <view wx:else>
+      <view class="archi-image">
+        <image src="{{imageUrl?baseUrl + imageUrl:''}}" mode="widthFix"></image>
+      </view>
+      <view class="qrcode">
+        <image src="../../image/QRCode.svg" mode="widthFix" bind:tap="handleSelectPhoto"></image>
+      </view>
+      <view class="qrcode-tips" >拍照AI识别</view>
+      <Name style="width: 240rpx;height: 160rpx;"></Name>
+      <view class="know-more">
+        <text>关于我们·了解更多 </text>
+        <image src="../../image/rightArrow.svg"></image>
+      </view>
+      <view class="copyright">2024©版权所有</view>
+    </view>
+  </Background>
+</scroll-view>

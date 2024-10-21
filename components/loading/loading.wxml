@@ -1,0 +1,7 @@
+<block>
+  <Logo style="height: 174rpx;" bind:loaded="addLoadedCount"></Logo>
+  <Name bind:loaded="addLoadedCount"></Name>
+  <view class="loading" wx:if="{{loadedCount===2}}">
+    <view class="loading-name">LOADING...</view>
+  </view>
+</block>

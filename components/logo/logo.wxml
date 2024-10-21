@@ -1,0 +1,3 @@
+<view>
+  <image src="../../image/LOGO.svg" class="logo" style="{{style}}" bindload="onImageLoad"></image>
+</view>

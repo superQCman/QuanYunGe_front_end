@@ -1,0 +1,4 @@
+<view style="{{style||backButtonStyle}}" class="back"  bindtap="back">
+  <image src="../../image/back.svg" class="back-image"></image>
+</view>
+<view wx:if="{{needTopBlock}}" style="{{backBlockMarginTop}}"></view>

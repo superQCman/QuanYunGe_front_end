@@ -1,0 +1,101 @@
+<BackButton bind:back="back"></BackButton>
+<view class="flex-col page">
+  <view class="flex-col flex-1 group_2">
+    <view class="flex-row items-center section">
+      <!-- <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar"> -->
+        <image class="image_5" src="{{userInfo.avatarUrl}}" />
+      <!-- </button> -->
+      <text class="font_1 text_3 ml-16" wx:if="{{!chname}}">{{userInfo.nickName}} </text>
+      <image class="image_chname" src="../../image/chname.svg"  bind:tap="chName" wx:if="{{!chname}}"/>
+      <view class="nickname-wrapper" wx:else>
+        <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
+      </view>
+    </view>
+    <!-- <view class="flex-col section_2 mt-16">
+      <text class="self-start text_4">我的订单</text>
+      <view class="flex-row equal-division mt-9">
+        <view class="flex-col items-center equal-division-item group_3">
+          <image
+            class="image_6"
+            src="https://ide.code.fun/api/image?token=670f9a791511d900114abab2&name=11c343daba34f80e9f51260fa869b5ef.png"
+          />
+          <text class="font_2 mt-10">待付款</text>
+        </view>
+        <view class="flex-col items-center equal-division-item equal-division-item_2">
+          <image
+            class="image_6"
+            src="https://ide.code.fun/api/image?token=670f9a791511d900114abab2&name=7abc1da4bcdf966259a6215ec2864cb7.png"
+          />
+          <text class="font_2 mt-10">待使用</text>
+        </view>
+        <view class="flex-col items-center equal-division-item equal-division-item_2">
+          <image
+            class="image_6"
+            src="https://ide.code.fun/api/image?token=670f9a791511d900114abab2&name=5091cd77bd305453d267ea8e83b90b4e.png"
+          />
+          <text class="font_2 mt-10">待评价</text>
+        </view>
+        <view class="flex-col items-center equal-division-item group_4">
+          <image
+            class="image_6"
+            src="https://ide.code.fun/api/image?token=670f9a791511d900114abab2&name=4158a8e5af104f265314379cbc42e4c4.png"
+          />
+          <text class="font_2 mt-10">退款/售后</text>
+        </view>
+      </view>
+    </view> -->
+    <view class="flex-col section_1 mt-26">
+      <view class="flex-row items-center">
+        <image
+          class="image_7"
+          src="../../image/history.svg"
+        />
+        <text class="font_3 ml-17">识别记录</text>
+      </view>
+      <view class="flex-row group_6 mt-26">
+        <image style="position: relative; left: -2rpx; top: 0rpx"
+          class="image_8"
+          src="../../image/save.svg"
+        />
+        <text class="font_3 ml-17">我的收藏</text>
+      </view>
+      <view class="flex-row group_7 mt-26">
+        <image
+          class="image_9"
+          src="../../image/gallary.svg"
+        />
+        <text class="font_3 ml-18">我的图库</text>
+      </view>
+    </view>
+    <!-- <view class="flex-row items-center section_3 mt-16">
+      <image
+        class="image_10"
+        src=""
+      />
+      <text class="font_3 ml-17">咨询热线</text>
+    </view> -->
+    <view class="flex-col section_3 mt-16">
+      <view class="flex-row group_8">
+        <image
+          class="image_11"
+          src="../../image/service.svg"
+        />
+        <text class="font_3 ml-19">服务条款</text>
+      </view>
+      <view class="flex-row group_9 mt-26">
+        <image
+          class="image_12"
+          src="../../image/feedback.svg"
+        />
+        <text class="font_3 ml-17">我要反馈</text>
+      </view>
+      <view class="flex-row mt-26">
+        <image
+          class="image_10"
+          src="../../image/aboutUs.svg"
+        />
+        <text class="font_3 ml-17">关于我们</text>
+      </view>
+    </view>
+  </view>
+</view>

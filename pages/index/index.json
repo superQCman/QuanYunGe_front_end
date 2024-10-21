@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "BackButton": "/components/backButton/backButton",
+    "CityImpress": "/components/cityImpress/cityImpress",
+    "Logo": "/components/logo/logo",
+    "Background": "/components/background/background",
+    "Name": "/components/name/name"
+  }
+}

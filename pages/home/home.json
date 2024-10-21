@@ -1,0 +1,6 @@
+{
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "BackButton": "/components/backButton/backButton"
+  }
+}
