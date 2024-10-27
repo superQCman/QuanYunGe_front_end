@@ -1,0 +1,14 @@
+/* components/buttonText.wxss */
+.body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80rpx;
+  height:auto;
+  width: auto;
+}
+
+.body .text{
+  font-family: "STXinwei";
+  color: #813A02;
+}

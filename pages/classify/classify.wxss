@@ -2,6 +2,7 @@
 .coin-lable{
   background-color: #f7f7f7;
   display: flex;
+  height: 100%;
   justify-content: space-between;
 }
 .coin-lable .coin-left{
@@ -27,6 +28,15 @@
   padding-left : 10rpx;
   padding-right : 10rpx;
 }
+.coin-box{
+  border-radius: 10rpx;
+  background: #fff;
+  padding: 20rpx;
+}
+.item{
+  margin: 10rpx;
+  font-size: 25rpx;
+}
 
 .coin-lable .coin-right .history-info{
   margin: 20rpx;
@@ -36,11 +46,8 @@
 
 .p {
   display: block;  /* 元素作为块级元素显示 */
-  margin-top: 1em;  /* 上外边距 */
-  margin-bottom: 1em;  /* 下外边距 */
-  margin-left: 0px;  /* 左外边距 */
-  margin-right: 0px;  /* 右外边距 */
   unicode-bidi: isolate;  /* 保持文本的双向显示处理 */
+  border-bottom: solid 2rpx #b4cace4d;
 }
 
 
@@ -57,11 +64,24 @@
 }
 
 .see-both{
-  color: red;
+  color: #9C443A;
 }
 .li{
   display: list-item;
   text-align: -webkit-match-parent;
   unicode-bidi: isolate;
-  margin: 10rpx;
+  margin: 20rpx;
+}
+
+.color{
+  color:#9C443A;
+  background-color: #f7f7f7;
+  font-weight: bold;
+}
+
+.same-block{
+  display: flex;
+  justify-content: center; /* 水平居中对齐 */
+  align-items: center; /* 垂直居中对齐 */
+  height: 110rpx;
 }

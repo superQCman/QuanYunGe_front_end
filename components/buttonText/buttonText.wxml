@@ -1,0 +1,4 @@
+<!--components/buttonText.wxml-->
+<view class="body">
+  <text class="text">泉韵流转，一币一史，传承古今</text>
+</view>

@@ -1,0 +1,41 @@
+<!--pages/resultPageNew/resultPageNew.wxml-->
+<BackButton bind:back="back"></BackButton>
+<Loading wx:if="{{isLoading}}"></Loading>
+<scroll-view wx:else  class="scrollarea" scroll-y type="list">
+  <Background>
+    <view class="container">
+      <view class="container-sub"></view>
+      <view class="textBox_center">
+        <text class="text textSize_70" style="font-weight:bold;">{{coinName}}</text>
+      </view>
+      <view class="textBox_center">
+        <image class="Img" src="{{TempImagPath}}"  />
+      </view>
+      <scroll-view 	scroll-y class="articleBox" style="padding-bottom: 20rpx;">
+        <view class="textBox_center">
+          <text class="text textSize_50" style="font-weight:bold;">面值：{{value}}</text>
+        </view>
+        <view class="textBox_center">
+          <text class="text textSize_50" style="font-weight:bold;">历史背景：</text>
+        </view>
+        <view class="textBox_start" style="margin-top:15rpx">
+          <text class="text textSize_40">{{history}}</text>
+        </view>
+        <view class="textBox_center">
+          <text class="text textSize_50" style="font-weight:bold;">版本介绍：</text>
+        </view>
+        <view style="margin-top:15rpx">
+          <view wx:for="{{version}}" wx:key="index" class="textBox_for">
+            <text class="text textSize_40">{{item.name}}{{item.value}}</text>
+          </view>
+        </view>
+        <view class="textBox_center">
+          <text class="text textSize_50" style="font-weight:bold;">价格走势：</text>
+        </view>
+        <view class="textBox_start" style="margin-top:15rpx;">
+          <text class="text textSize_40">平均收藏价值：{{meanPrice}}</text>
+        </view>
+      </scroll-view>
+    </view>
+  </Background>
+</scroll-view>

@@ -1,4 +1,4 @@
 <view class="background">
-  <image src="../../image/background.svg" class="background-image"></image>
+  <image src="../../image/背景.png" class="background-image"></image>
   <slot></slot>
 </view>

@@ -67,7 +67,16 @@ Page({
       userInfo: app.globalData.userInfo
     });
   },
-
+  goToHistory(){
+    wx.navigateTo({
+      url: `../history/history?isHistory=${true}`
+    })
+  },
+  goToSave(){
+    wx.navigateTo({
+      url: `../history/history?isHistory=${false}`
+    })
+  },
   onShareAppMessage() {
     return {};
   },

@@ -1,0 +1,89 @@
+/* pages/resultPageNew/resultPageNew.wxss */
+.container-sub{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rpx;
+  width: 100%;
+  margin-bottom: 100rpx;
+}
+
+.scrollarea {
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.coinImag{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.textBox_center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40rpx;
+  height:auto;
+  width: auto;
+}
+
+.textBox_start{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 60rpx;
+  height:auto;
+  width: 550rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  flex-wrap: wrap; /* 允许子元素换行 */
+}
+
+.textBox_for{
+  list-style-type: none;
+  display: list-item;
+  text-align: -webkit-match-parent;
+  unicode-bidi: isolate;
+  margin: 20rpx;
+}
+.text{
+  color: #813A02;
+  white-space: normal; 
+  word-break: break-word;
+  max-width: 100%; /* 防止超出父容器 */
+}
+
+.textSize_70{
+  font-size: 70rpx;
+}
+
+.textSize_50{
+  font-size: 50rpx;
+}
+
+.textSize_40{
+  font-size: 40rpx;
+}
+
+.textBox_center .Img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300rpx;
+  width: 300rpx;
+}
+
+.articleBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30rpx;
+  height: 700rpx;
+  width: 600rpx;
+  border-radius: 20rpx;
+  background-color: rgb(235, 220, 209);
+}
+

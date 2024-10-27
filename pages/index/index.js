@@ -9,7 +9,7 @@ Page({
   data: {
     motto: '登录',
     mainpage: false,
-    tempImagePath: '',
+    tempImagePath: [],
     userInfo: {
       avatarUrl: defaultAvatarUrl,
       nickName: '',
@@ -134,7 +134,7 @@ Page({
         };
 
         console.log("全局 userInfo:", app.globalData.userInfo);
-        console.log('后端返回数据:', response);
+        console.log('后端返回数据:', response.data.username);
       } catch (error) {
         console.error('提交用户名失败:', error);
       }
@@ -161,9 +161,12 @@ Page({
   },
   goToNextPage() {
     console.log("传输tempImagePath：",this.data.tempImagePath);
-    if(this.tempImagePath !== '')wx.navigateTo({
-      url: `../resultPage/resultPage?tempImagePath=${this.data.tempImagePath}`,
-    })
+    if (this.data.tempImagePath.length == 2) {
+      const coinName = "";
+      wx.navigateTo({
+        url: `../resultPageNew/resultPageNew?ImagePath_1=${this.data.tempImagePath[0]}&ImagePath_2=${this.data.tempImagePath[1]}&coinName=${coinName}`,
+      })
+    }
   },
   selectPhoto(callBack) {
     let itemList = ['拍照', '从手机相册选择', '从聊天记录选择'];
@@ -176,7 +179,6 @@ Page({
             sourceType: ['camera'],
             success: (res) => {
               if (callBack) callBack(res);
-              this.goToNextPage();
             }
           });
         } else if (action.tapIndex === 1) {
@@ -185,7 +187,6 @@ Page({
             sourceType: ['album'],
             success: (res) => {
               if (callBack) callBack(res);
-              this.goToNextPage();
             }
           });
         } else if (action.tapIndex === 2) {
@@ -194,7 +195,6 @@ Page({
             success: (res) => {
               console.log("res:",res);
               if (callBack) callBack(res);
-              this.goToNextPage();
             }
           });
         }
@@ -206,18 +206,43 @@ Page({
     // 使用 this 来调用 selectPhoto 方法
     this.selectPhoto((result) => {
       console.log('选择的结果:', result);
-      // 将选中的图片路径存储到 data 中
+      // 获取当前的 tempImagePath 数组
+      let tempImagePath = this.data.tempImagePath || [];
+  
+      // 将选中的图片路径存储到 tempImagePath 数组中
       if (result.tempFiles && result.tempFiles.length > 0 && result.tempFiles[0].path) {
-        this.setData({
-          tempImagePath: result.tempFiles[0].path
-        });
+        tempImagePath.push(result.tempFiles[0].path);
       } else if (result.type) {
-        this.setData({
-          tempImagePath: result.tempFiles[0].tempFilePath
-        });
+        tempImagePath.push(result.tempFiles[0].tempFilePath);
       }
+  
+      // 更新 tempImagePath 数据
+      this.setData({
+        tempImagePath: tempImagePath
+      });
+  
+      // 检查 tempImagePath 数组的长度，如果已经有两个图片地址了，就不再继续
+      if (tempImagePath.length >= 2) {
+        console.log('已选择两个图片，停止拍摄');
+        this.goToNextPage();
+        return;
+      }
+  
+      // 提示用户是否继续拍照
+      wx.showModal({
+        title: '继续拍照',
+        content: '是否继续拍摄下一张照片？',
+        showCancel: false,
+        success: (res) => {
+          if (res.confirm) {
+            // 用户点击了“确定”按钮，继续拍摄下一张照片
+            this.handleSelectPhoto();
+          }
+        }
+      });
     });
   },
+  
   chName: function () {
     console.log('Image clicked');
     this.setData({

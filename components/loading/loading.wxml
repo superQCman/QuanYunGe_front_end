@@ -1,5 +1,5 @@
 <block>
-  <Logo style="height: 174rpx;" bind:loaded="addLoadedCount"></Logo>
+  <BackButton style="opacity:0;height: 20rpx;"></BackButton>
   <Name bind:loaded="addLoadedCount"></Name>
   <view class="loading" wx:if="{{loadedCount===2}}">
     <view class="loading-name">LOADING...</view>

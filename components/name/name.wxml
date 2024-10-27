@@ -1,4 +1,3 @@
-<view class="archi-casca">
-  <image src="../../image/Archi&Casca.svg" class="archi-casca-name" style="{{style}}" mode="widthFix"  bindload="onImageLoad"></image>
-  <view class="archi-desc" wx:if="{{!loading}}">以科技之新，见城市印象之美</view>
+<view class="logo">
+  <image style="width: 561rpx; height: 183rpx; display: block; box-sizing: border-box" class="img" src="../../image/name.png" />
 </view>

@@ -5,3 +5,14 @@
   width: 196rpx;
   height: 174rpx;
 }
+
+.image {
+  width: 100.8vw;
+  height: 64.5333vw;
+}
+.pos {
+  position: absolute;
+  left: 0;
+  right: -6rpx;
+  top: 0;
+}

@@ -4,6 +4,8 @@
     "Logo": "/components/logo/logo",
     "Background": "/components/background/background",
     "Name": "/components/name/name",
-    "buttonText":"/components/buttonText/buttonText"
+    "buttonText":"/components/buttonText/buttonText",
+    "Loading":"/components/loading/loading",
+    "NameTrans":"/components/name_1/name_1"
   }
 }

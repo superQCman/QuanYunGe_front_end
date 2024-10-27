@@ -1,0 +1,34 @@
+<!--pages/history/history.wxml-->
+<BackButton bind:back="back"></BackButton>
+<scroll-view class="scrollarea" scroll-y type="list">
+  <Background>
+    <view class="container">
+      <view class="container-sub"></view>
+      <view class="textBox_center">
+        <text wx:if="{{isHistory}}" class="text textSize_70" style="font-weight:bold;">历史记录</text>
+        <text wx:else class="text textSize_70" style="font-weight:bold;">我的收藏</text>
+      </view>
+      <scroll-view scroll-y class="textBox_center" style="height: 900rpx;padding-left: 10rpx;padding-right: 10rpx;">
+        <view wx:for="{{coinID}}" wx:for-index="index" wx:key="index" class="articleBox" style="padding-bottom: 20rpx;" data-index="{{index}}" bind:tap="goToResult">
+          <view class="Img_center">
+            <image class="Img" src="{{TempImagPath[index]}}" />
+          </view>
+          <view class="textBox_start_outer">
+            <view class="textBox_start">
+              <text class="text textSize_30" style="font-weight:bold;">钱币ID：{{coinID[index]}}</text>
+            </view>
+            <view class="textBox_start">
+              <text class="text textSize_30" style="font-weight:bold;">钱币名：{{coinName[index]}}</text>
+            </view>
+            <view class="textBox_start">
+              <text class="text textSize_30" style="font-weight:bold;">识别时间：</text>
+            </view>
+            <view class="textBox_start" style="margin-top: 10rpx;">
+              <text class="text textSize_30" style="font-weight:bold;">{{time[index]}}</text>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </Background>
+</scroll-view>
