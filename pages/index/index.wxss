@@ -1,35 +1,11 @@
 /**index.wxss**/
 
-.image {
-  width: 100.8vw;
-  height: 64.5333vw;
-}
-.pos {
-  position: absolute;
-  left: 0;
-  right: -6rpx;
-  top: 0;
-}
 page {
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-.home-button {
-  position: relative;
-  top: 20rpx;
-  left: 20rpx;
-  background-color: transparent;
-  
-}
-
-.home-icon {
-  position: relative;
-  width: 50rpx;
-  height: 50rpx;
-  border-radius: 50%;
-}
 
 .scrollarea {
   flex: 1;
@@ -131,13 +107,6 @@ page {
 .nickname-input {
   flex: 1;
 }
-.archi-image {
-  display: flex;
-  margin-top: 30rpx;
-  padding: 0 82rpx;
-  display: flex;
-  justify-content: center;
-}
 
 
 .qrcode {
@@ -151,53 +120,13 @@ page {
   height: 172rpx;
 }
 
-.qrcode-tips {
-  width: 100%;
-  text-align: center;
-  font-size: 30rpx;
-  margin-top: 60rpx;
-  background: linear-gradient(180deg, #00F 0%, rgba(2, 125, 215, 0.00) 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
-.know-more {
-  width: 100%;
-  text-align: center;
-  font-size: 18rpx;
-  background: linear-gradient(90deg, #754ABC 15.08%, #009FE8 80.82%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-top: 16rpx;
-
-}
-
-.know-more image {
-  height: 32rpx;
-  width: 32rpx;
-  vertical-align: middle;
-}
 
 .copyright {
   text-align: center;
   color: #979797;
   font-size:16rpx;
 }
-
-.text-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 102rpx;
-  padding: 16rpx 0;
-  background-color: #9C443A; /* 设置背景颜色为棕色 */
-  border-radius: 20rpx;
-  background-size: 100% 100%;
-  width: 612rpx;
-}
-
 
 .text {
   display: flex;

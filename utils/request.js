@@ -1,5 +1,5 @@
 // export const baseUrl = 'http://gz.nacldragon.top:38234'
-export const baseUrl = 'http://8.138.127.46:5000'
+export const baseUrl = 'https://www.policy-scut.cn'
 
 export const sendUsername = async (username, openId) => {
   return new Promise((resolve, reject) => {
@@ -23,44 +23,7 @@ export const sendUsername = async (username, openId) => {
   });
 };
 
-export const getHistory = async ()=>{
-  return new Promise ((resolve,reject) => {
-    wx.request({
-      method: 'POST',
-      url: `${baseUrl}/history`,
-      header: {
-        'content-type': 'application/json' // 指定请求数据格式为 JSON
-      },
-      success: res => {
-        resolve(JSON.parse(res.data))
-      },
-      
-      fail: error => {
-        reject(error)
-      },
-    })
-  })
-}
 
-// export const sendSave = async (idList) =>{ // 收藏
-//   return new Promise ((resolve,reject) =>{
-//     wx.request({
-//       method: 'POST',
-//       url: `${baseUrl}/save`,
-//       data:{
-//         ID:idList
-//       },
-//       success: res => {
-//         resolve(JSON.parse(res.data))
-//         console.log("sendSaveBack:",res.data)
-//       },
-      
-//       fail: error => {
-//         reject(error)
-//       },
-//     })
-//   })
-// }
 export const configRequest = async () => {
   return new Promise((resolve, reject) => {
     wx.request({

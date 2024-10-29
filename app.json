@@ -1,11 +1,22 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/resultPageNew/resultPageNew",
     "pages/home/home",
-    "pages/classify/classify",
-    "pages/history/history",
-    "pages/logs/logs"
+    "pages/classify/classify"
+  ],
+  "subPackages": [
+    {
+      "root": "pages/resultPageNew",
+      "pages": [
+        "resultPageNew"
+      ]
+    },
+    {
+      "root": "pages/history",
+      "pages": [
+        "history"
+      ]
+    }
   ],
   "window": {
     "navigationBarTextStyle": "black",

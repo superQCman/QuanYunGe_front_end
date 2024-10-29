@@ -1,7 +1,6 @@
 <!--pages/resultPageNew/resultPageNew.wxml-->
 <BackButton bind:back="back"></BackButton>
 <!-- <Loading wx:if="{{isLoading}}"></Loading> -->
-
   <Background>
     <view class="container">
       <view class="container-sub">
