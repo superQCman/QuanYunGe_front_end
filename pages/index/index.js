@@ -45,7 +45,7 @@ Page({
   // 页面加载时读取本地存储的用户信息
   onLoad() {
     this.getConfig();
-  
+    
     const nickName = wx.getStorageSync('nickName');
     const avatarUrl = wx.getStorageSync('avatarUrl');
     const openId = wx.getStorageSync('openid');
@@ -162,9 +162,15 @@ Page({
   goToNextPage() {
     console.log("传输tempImagePath：",this.data.tempImagePath);
     if (this.data.tempImagePath.length == 2) {
+      const ImagePath_1 = this.data.tempImagePath[0];
+      const ImagePath_2 = this.data.tempImagePath[1];
+      this.setData({
+        tempImagePath: []
+      })
+      console.log("tempfilePath:", this.data.tempImagePath.length)
       const coinName = "";
       wx.navigateTo({
-        url: `../resultPageNew/resultPageNew?ImagePath_1=${this.data.tempImagePath[0]}&ImagePath_2=${this.data.tempImagePath[1]}&coinName=${coinName}`,
+        url: `../resultPageNew/resultPageNew?ImagePath_1=${ImagePath_1}&ImagePath_2=${ImagePath_2}&coinName=${coinName}&isSave=${true}`,
       })
     }
   },
@@ -222,7 +228,7 @@ Page({
       });
   
       // 检查 tempImagePath 数组的长度，如果已经有两个图片地址了，就不再继续
-      if (tempImagePath.length >= 2) {
+      if (tempImagePath.length === 2) {
         console.log('已选择两个图片，停止拍摄');
         this.goToNextPage();
         return;
@@ -254,5 +260,6 @@ Page({
     wx.navigateTo({
       url: `/pages/home/home?nickName=${this.data.userInfo.nickName}&avatarUrl=${this.data.userInfo.avatarUrl}`,
     });
-  }
+  },
+
 })

@@ -1,17 +1,28 @@
 <!--pages/resultPageNew/resultPageNew.wxml-->
 <BackButton bind:back="back"></BackButton>
-<Loading wx:if="{{isLoading}}"></Loading>
-<scroll-view wx:else  class="scrollarea" scroll-y type="list">
+<!-- <Loading wx:if="{{isLoading}}"></Loading> -->
+
   <Background>
     <view class="container">
-      <view class="container-sub"></view>
-      <view class="textBox_center">
-        <text class="text textSize_70" style="font-weight:bold;">{{coinName}}</text>
+      <view class="container-sub">
+        <view wx:if="{{isSave}}" class="usermotto">
+          <image bind:tap="save"   class="img" src="../../image/已收藏.svg"></image>
+        </view>
+        <view wx:else="" class="usermotto">
+          <image bind:tap="save"  class="img" src="../../image/未收藏.svg"></image>
+        </view>
       </view>
+      <!-- <view class="textBox_center">
+        <text class="text textSize_70" style="font-weight:bold;">{{coinName}}</text>
+      </view> -->
+
       <view class="textBox_center">
-        <image class="Img" src="{{TempImagPath}}"  />
+        <image class="Img" src="{{TempImagPath}}"/>
       </view>
       <scroll-view 	scroll-y class="articleBox" style="padding-bottom: 20rpx;">
+        <view class="textBox_center">
+          <text class="text textSize_50" style="font-weight:bold;">{{coinName}}</text>
+        </view>
         <view class="textBox_center">
           <text class="text textSize_50" style="font-weight:bold;">面值：{{value}}</text>
         </view>
@@ -38,4 +49,3 @@
       </scroll-view>
     </view>
   </Background>
-</scroll-view>

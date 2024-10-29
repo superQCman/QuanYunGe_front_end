@@ -1,6 +1,6 @@
 // pages/resultPageNew/resultPageNew.js
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
-import {uploadImageRequest,downloadImage,detailRequest} from "../../utils/request"
+import {uploadImageRequest,downloadImage,detailRequest,savePost} from "../../utils/request"
 Page({
   /**
    * 页面的初始数据
@@ -10,6 +10,7 @@ Page({
     TempImagPath:defaultAvatarUrl, // 识别图片地址（从后端得到）
     ImagePath_1:'',
     ImagePath_2:'',
+    detectID:'',
     value:'5',
     history:'历史背景.....',
     version:[
@@ -31,19 +32,23 @@ Page({
       },
     ],
   meanPrice:'20',
-  isLoading: true
+  isLoading: true,
+  isSave: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(e) {
+      const isSave = e.isSave === "true";
       const coinName = e.coinName;
       const ImagePath_1 = e.ImagePath_1;
       const ImagePath_2 = e.ImagePath_2;
       console.log("coinName: ",coinName,"\nImagePath_1: ",ImagePath_1,"\nImagePath_2:",ImagePath_2);
+      console.log("isSave: ",isSave);
       this.setData({
         coinName: coinName,
+        isSave: isSave,
         ImagePath_1: ImagePath_1,
         ImagePath_2:ImagePath_2
       })
@@ -61,7 +66,8 @@ Page({
         isLoading: false,
         value: data.value,
         history: data.history,
-        version: data.version
+        version: data.version,
+        
       });
       const TempImagPath = await downloadImage(data.fileName);
       this.setData({
@@ -80,16 +86,22 @@ Page({
   },
   async handleUploadImage() {
     try {
-      const data = await uploadImageRequest(this.data.ImagePath_1,this.data.ImagePath_2)
+      const app = getApp();
+      const {
+        openId
+      } = app.globalData.userInfo;
+      const data = await uploadImageRequest(openId,this.data.ImagePath_1,this.data.ImagePath_2)
       console.log(data);
       this.setData({
         isLoading: false,
+        detectID: data.id,
         coinName:data.coinName,
         value: data.value,
         history: data.history,
         version: data.version
       });
       console.log(data.fileName);
+      console.log("id",data.id);
       const TempImagPath = await downloadImage(data.fileName);
 
       this.setData({
@@ -109,6 +121,37 @@ Page({
   back() {
     wx.navigateBack({})
   },
+  async save(){
+    const app = getApp();
+    const {
+      openId
+    } = app.globalData.userInfo;
+    console.log('openID: ',openId)
+    const data = await savePost(openId,this.data.coinName,this.data.isSave);
+    console.log(data.received);
+    if(data.received === "1"){
+      wx.showModal({
+        title: '提示',
+        content: '收藏成功',
+        showCancel: false, // 不显示取消按钮
+        confirmText: '确定' // 确认按钮文字
+      });
+      this.setData({
+        isSave:true
+      })
+    }else{
+      wx.showModal({
+        title: '提示',
+        content: '取消收藏',
+        showCancel: false, // 不显示取消按钮
+        confirmText: '确定' // 确认按钮文字
+      });
+      this.setData({
+        isSave:false
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

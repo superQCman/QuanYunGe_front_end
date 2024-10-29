@@ -1,6 +1,6 @@
 // pages/classify/classify.js
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0';
-import { classifyRequest, dynastyRequest } from '../../utils/request.js'
+import { classifyRequest, whetherIsSave } from '../../utils/request.js'
 Page({
   /**
    * 页面的初始数据
@@ -27,7 +27,8 @@ Page({
       '清', 
       '民国'
     ],
-    introduce:""
+    introduce:"",
+    isSave:false
   },
   async selectCategory(e) {
     const index = e.currentTarget.dataset.index;
@@ -52,8 +53,16 @@ Page({
     console.log("Outer index:", outerIndex, "Inner index:", innerIndex);
     console.log("value: ",this.data.items[outerIndex].value[innerIndex]);
     const ImagePath = "";
+    this.checkSave(this.data.items[outerIndex].value[innerIndex]);
     wx.navigateTo({
-      url: `/pages/resultPageNew/resultPageNew?coinName=${this.data.items[outerIndex].value[innerIndex]}&ImagePath_1=${ImagePath}&ImagePath_2=${ImagePath}`,
+      url: `/pages/resultPageNew/resultPageNew?coinName=${this.data.items[outerIndex].value[innerIndex]}&ImagePath_1=${ImagePath}&ImagePath_2=${ImagePath}&isSave=${this.data.isSave}`,
+    })
+  },
+
+  async checkSave(name){
+    const data = await whetherIsSave(name);
+    this.setData({
+      isSave:data.isSave
     })
   },
   /**

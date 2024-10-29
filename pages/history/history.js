@@ -1,6 +1,6 @@
 // pages/history/history.js
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
-import {historyRequest, downloadImage, saveRequest} from "../../utils/request"
+import {historyRequest, downloadImage, saveRequest, whetherIsSave} from "../../utils/request"
 Page({
   /**
    * 页面的初始数据
@@ -11,14 +11,26 @@ Page({
     TempImagPath:[defaultAvatarUrl,defaultAvatarUrl], // 识别图片地址（从后端得到）
     time:['2022年10月1日 14:23','2022年10月2日 14:23'],
     isLoading: true,
-    isHistory: true
+    isHistory: true,
+    isSave: true
   },
   goToResult: function(e){
     const Index = e.currentTarget.dataset.index; // index
     console.log("index:", Index);
     const ImagePath = "";
+    this.checkSave(this.data.coinName[Index]);
     wx.navigateTo({
-      url: `/pages/resultPageNew/resultPageNew?coinName=${this.data.coinName[Index]}&ImagePath_1=${ImagePath}&ImagePath_2=${ImagePath}`,
+      url: `/pages/resultPageNew/resultPageNew?coinName=${this.data.coinName[Index]}&ImagePath_1=${ImagePath}&ImagePath_2=${ImagePath}&isSave=${this.data.isSave}`,
+    })
+  },
+  async checkSave(name){
+    const app = getApp();
+      const {
+        openId
+      } = app.globalData.userInfo;
+    const data = await whetherIsSave(openId,name);
+    this.setData({
+      isSave:data.isSave
     })
   },
   /**
@@ -39,7 +51,12 @@ Page({
   },
   async getHistory(){
     try {
-      const data = await historyRequest();
+      const app = getApp();
+      const {
+        openId
+      } = app.globalData.userInfo;
+      console.log('openID: ', openId)
+      const data = await historyRequest(openId);
       console.log(data);
       this.setData({
         isLoading: false,
@@ -70,7 +87,12 @@ Page({
   },
   async getSave(){
     try {
-      const data = await saveRequest();
+      const app = getApp();
+      const {
+        openId
+      } = app.globalData.userInfo;
+      console.log('openID: ', openId)
+      const data = await saveRequest(openId);
       console.log(data);
       this.setData({
         isLoading: false,

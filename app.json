@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/resultPage/resultPage",
     "pages/resultPageNew/resultPageNew",
     "pages/home/home",
     "pages/classify/classify",

@@ -1,11 +1,11 @@
 /* pages/resultPageNew/resultPageNew.wxss */
 .container-sub{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 20rpx;
+  justify-content: flex-end;
+  align-items: flex-start;
+  height: 30rpx;
   width: 100%;
-  margin-bottom: 100rpx;
+  margin-bottom: 50rpx;
 }
 
 .scrollarea {
@@ -25,7 +25,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40rpx;
+  margin-top: 0rpx;
   height:auto;
   width: auto;
 }
@@ -36,7 +36,7 @@
   align-items: center;
   margin-top: 60rpx;
   height:auto;
-  width: 550rpx;
+  width: 690rpx;
   margin-left: 30rpx;
   margin-right: 30rpx;
   flex-wrap: wrap; /* 允许子元素换行 */
@@ -81,9 +81,27 @@
   justify-content: center;
   align-items: center;
   margin-top: 30rpx;
-  height: 700rpx;
-  width: 600rpx;
-  border-radius: 20rpx;
+  height: 1100rpx;
+  width: 100%;
+  border-radius: 65rpx;
   background-color: rgb(235, 220, 209);
+}
+
+.usermotto {
+  display: flex;
+  /* justify-content: end;
+  align-items: end; */
+  /* margin-top: 50px; */
+  height: auto;
+
+}
+
+.img{
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  height: 80rpx;
+  width: 80rpx;
+  margin-right: 30rpx;
 }
 
