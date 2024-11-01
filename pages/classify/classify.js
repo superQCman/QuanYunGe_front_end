@@ -1,6 +1,6 @@
 // pages/classify/classify.js
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0';
-import { classifyRequest, whetherIsSave } from '../../utils/request.js'
+import { classifyRequest, whetherIsSave,CoinsResource,detailRequest } from '../../utils/request.js'
 Page({
   /**
    * 页面的初始数据
@@ -12,22 +12,12 @@ Page({
       openId: ''
     },
     ismore:false,
-    items: [],
+    items: ['null'],
     selectedIndex: 0, // 记录当前选中的索引
-    categories: [
-      '先秦', 
-      '秦汉', 
-      '三国\n两晋',
-      '南北朝', 
-      '隋唐',
-      '五代\n十国', 
-      '宋', 
-      '辽金\n西夏元', 
-      '明', 
-      '清', 
-      '民国'
-    ],
-    introduce:"",
+    class_id:[],
+    categories: [],
+    introduce:"null",
+    all_data:[],
     isSave:false
   },
   async selectCategory(e) {
@@ -36,10 +26,17 @@ Page({
       selectedIndex: index
     });
     console.log("selectedIndex: ",this.data.selectedIndex);
-    const data = await  classifyRequest(index);
+    let data = await classifyRequest();
+    console.log("data.class_story: ",data.class_story)
+    console.log("introduce: ", data.class_story[index])
     this.setData({
-      items: data.items,
-      introduce: data.introduce
+      introduce: data.class_story[index],
+    })
+    data = await CoinsResource(index);
+    console.log(data.coins)
+    this.setData({
+      items: data.coins,
+      introduce: data.class_story.class_story
     })
   },
   toggleMore: function () {
@@ -48,34 +45,58 @@ Page({
     });
   },
   goToResult: function(e){
-    const outerIndex = e.currentTarget.dataset.outerIndex; // 外层 index
-    const innerIndex = e.currentTarget.dataset.innerIndex; // 内层 index
-    console.log("Outer index:", outerIndex, "Inner index:", innerIndex);
-    console.log("value: ",this.data.items[outerIndex].value[innerIndex]);
+    // const outerIndex = e.currentTarget.dataset.outerIndex; // 外层 index
+    const coinId = e.currentTarget.dataset.innerIndex; // 内层 index
+    const coin_name = e.currentTarget.dataset.name;
+    console.log( "Inner index:", coinId);
+    console.log("name: ",coin_name);
     const ImagePath = "";
-    this.checkSave(this.data.items[outerIndex].value[innerIndex]);
+    // this.checkSave(coinId);
     wx.navigateTo({
-      url: `/pages/resultPageNew/resultPageNew?coinName=${this.data.items[outerIndex].value[innerIndex]}&ImagePath_1=${ImagePath}&ImagePath_2=${ImagePath}&isSave=${this.data.isSave}`,
+      url: `/pages/resultPageNew/resultPageNew?coinName=${coin_name}&ImagePath_1=${ImagePath}&ImagePath_2=${ImagePath}&coinId=${coinId}`,
     })
   },
 
-  async checkSave(name){
-    const data = await whetherIsSave(name);
-    this.setData({
-      isSave:data.isSave
-    })
+  async detail(coinId){
+    const test_data = await detailRequest(coinId)
+    console.log("test_data: ",test_data)
+  },
+  async checkSave(coinId){
+    const data = await whetherIsSave(this.data.userInfo.openId,coinId);
+    console.log(data)
+    if(data === 1){
+      this.setData({
+        isSave:true
+      })
+    }if(data === 2){
+      this.setData({
+        isSave:false
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   async onLoad(options) {
-    const index = 0;
-    const data = await classifyRequest(index);
+    let data = await classifyRequest();
+    console.log("data.class_story: ",data.class_story)
     this.setData({
-      items: data.items,
-      introduce: data.introduce
+      categories: data.class
     })
-    
+    let index = this.data.categories[0].class_id;
+    data = await CoinsResource(index);
+    console.log(data.coins)
+    this.setData({
+      items: data.coins,
+      introduce: data.class_story.class_story,
+      selectedIndex: index
+    })
+    console.log("items: ",this.data.items);
+    console.log("introduce: ",this.data.introduce);
+    // this.setData({
+    //   items: data.items,
+    //   introduce: data.introduce
+    // })
   },
 
   /**

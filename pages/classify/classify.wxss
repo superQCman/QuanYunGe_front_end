@@ -27,6 +27,7 @@
   background: #fff;
   padding-left : 10rpx;
   padding-right : 10rpx;
+  margin-left: 20rpx;
 }
 .coin-box{
   border-radius: 10rpx;
@@ -36,6 +37,7 @@
 .item{
   margin: 10rpx;
   font-size: 25rpx;
+  margin-left: 10rpx;
 }
 
 .coin-lable .coin-right .history-info{

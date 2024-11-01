@@ -1,6 +1,7 @@
 <!--pages/history/history.wxml-->
 <BackButton bind:back="back"></BackButton>
-<scroll-view class="scrollarea" scroll-y type="list">
+<Loading wx:if="{{isLoading}}"></Loading>
+<scroll-view wx:else="" class="scrollarea" scroll-y type="list">
   <Background>
     <view class="container">
       <view class="container-sub"></view>
@@ -20,12 +21,12 @@
             <view class="textBox_start">
               <text class="text textSize_30" style="font-weight:bold;">钱币名：{{coinName[index]}}</text>
             </view>
-            <view class="textBox_start">
+            <!-- <view class="textBox_start">
               <text class="text textSize_30" style="font-weight:bold;">识别时间：</text>
-            </view>
-            <view class="textBox_start" style="margin-top: 10rpx;">
+            </view> -->
+            <!-- <view class="textBox_start" style="margin-top: 10rpx;">
               <text class="text textSize_30" style="font-weight:bold;">{{time[index]}}</text>
-            </view>
+            </view> -->
           </view>
         </view>
       </scroll-view>

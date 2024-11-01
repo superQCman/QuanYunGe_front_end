@@ -1,7 +1,7 @@
 <!--pages/resultPageNew/resultPageNew.wxml-->
 <BackButton bind:back="back"></BackButton>
-<!-- <Loading wx:if="{{isLoading}}"></Loading> -->
-  <Background>
+<Loading wx:if="{{isLoading}}"></Loading>
+  <Background wx:else>
     <view class="container">
       <view class="container-sub">
         <view wx:if="{{isSave}}" class="usermotto">
@@ -11,9 +11,9 @@
           <image bind:tap="save"  class="img" src="../../image/未收藏.svg"></image>
         </view>
       </view>
-      <!-- <view class="textBox_center">
+      <view class="textBox_center">
         <text class="text textSize_70" style="font-weight:bold;">{{coinName}}</text>
-      </view> -->
+      </view>
 
       <view class="textBox_center">
         <image class="Img" src="{{TempImagPath}}"/>
@@ -22,29 +22,44 @@
         <view class="textBox_center">
           <text class="text textSize_50" style="font-weight:bold;">{{coinName}}</text>
         </view>
-        <view class="textBox_center">
+        <!-- <view class="textBox_center">
           <text class="text textSize_50" style="font-weight:bold;">面值：{{value}}</text>
-        </view>
+        </view> -->
         <view class="textBox_center">
-          <text class="text textSize_50" style="font-weight:bold;">历史背景：</text>
+          <text class="text textSize_50 " style="font-weight:bold;">历史背景：</text>
         </view>
         <view class="textBox_start" style="margin-top:15rpx">
-          <text class="text textSize_40">{{history}}</text>
+          <text class="text textSize_30  {{isMore ? '' : 'introduce'}}">{{history}}</text>
+          <view class="see-both" bindtap="toggleMore">{{isMore ? '收起详情' : '展开详情'}}</view>
         </view>
         <view class="textBox_center">
           <text class="text textSize_50" style="font-weight:bold;">版本介绍：</text>
         </view>
         <view style="margin-top:15rpx">
           <view wx:for="{{version}}" wx:key="index" class="textBox_for">
-            <text class="text textSize_40">{{item.name}}{{item.value}}</text>
+            <text class="text textSize_40">{{item.name}}{{item.value}} {{unit[index]}}</text>
           </view>
         </view>
         <view class="textBox_center">
-          <text class="text textSize_50" style="font-weight:bold;">价格走势：</text>
+          <text class="text textSize_50" style="font-weight:bold;">成交记录：</text>
         </view>
-        <view class="textBox_start" style="margin-top:15rpx;">
-          <text class="text textSize_40">平均收藏价值：{{meanPrice}}</text>
+        <view wx:for="{{transList}}" wx:key="trans_id">
+          <view class="textBox_center">
+            <image class="Img" src="{{item.transaction_photo}}" />
+          </view>
+          <view class="textBox_start" style="margin-top:15rpx;">
+            <text class="text textSize_40">交易 ID: {{item.trans_id}}</text>
+          </view>
+          <view class="textBox_start" style="margin-top:15rpx;">
+            <text class="text textSize_40">价格: {{item.trans_price}} 元</text>
+          </view>
+          <view class="textBox_start" style="margin-top:15rpx;">
+            <text class="text textSize_40">时间: {{item.trans_time}}</text>
+          </view>
+            
         </view>
+        
+        
       </scroll-view>
     </view>
   </Background>

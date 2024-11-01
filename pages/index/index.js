@@ -3,8 +3,8 @@ const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia0
 import {
   sendUsername
 } from '../../utils/request'; // 假设 sendUsername 定义在 utils/api.js 中
-import {setColor} from '../../utils/color.js';
-import {configRequest} from '../../utils/request'
+// import {setColor} from '../../utils/color.js';
+// import {configRequest} from '../../utils/request'
 Page({
   data: {
     motto: '登录',
@@ -44,8 +44,6 @@ Page({
   },
   // 页面加载时读取本地存储的用户信息
   onLoad() {
-    this.getConfig();
-    
     const nickName = wx.getStorageSync('nickName');
     const avatarUrl = wx.getStorageSync('avatarUrl');
     const openId = wx.getStorageSync('openid');
@@ -62,21 +60,21 @@ Page({
       });
     }
   },
-  async getConfig(){
-    try {
-      const data=await configRequest();
-      this.setData({
-        imageUrl:data.data.imageUrl
-      })
-      setColor(data.data.color)
-    } catch (error) {
-      wx.showToast({
-        title: '错误请求',
-        icon:"error",
-        duration:2000
-      })
-    }
-  },
+  // async getConfig(){
+  //   try {
+  //     const data=await configRequest();
+  //     this.setData({
+  //       imageUrl:data.data.imageUrl
+  //     })
+  //     setColor(data.data.color)
+  //   } catch (error) {
+  //     wx.showToast({
+  //       title: '错误请求',
+  //       icon:"error",
+  //       duration:2000
+  //     })
+  //   }
+  // },
   onInputChange(e) {
     const nickName = e.detail.value
     const {
@@ -134,7 +132,7 @@ Page({
         };
 
         console.log("全局 userInfo:", app.globalData.userInfo);
-        console.log('后端返回数据:', response.data.username);
+        // console.log('后端返回数据:', response.data);
       } catch (error) {
         console.error('提交用户名失败:', error);
       }

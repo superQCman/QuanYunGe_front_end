@@ -5,10 +5,9 @@ export const sendUsername = async (username, openId) => {
   return new Promise((resolve, reject) => {
     wx.request({
       method: 'POST',
-      url: `${baseUrl}/username`,  // 后端服务器地址
+      url: `${baseUrl}/user/${openId}`,  // 后端服务器地址
       data: {
-        username: username,
-        openId: openId
+        name: username,
       },
       header: {
         'content-type': 'application/json' // 指定请求数据格式为 JSON
@@ -22,26 +21,6 @@ export const sendUsername = async (username, openId) => {
     });
   });
 };
-
-
-export const configRequest = async () => {
-  return new Promise((resolve, reject) => {
-    wx.request({
-      method: 'POST',
-      url: `${baseUrl}/config`,
-      header: {
-        'content-type': 'application/json' // 指定请求数据格式为 JSON
-      },
-      success: res => {
-        resolve(res.data)
-      },
-      
-      fail: error => {
-        reject(error)
-      },
-    })
-  })
-}
 
 export const uploadImageRequest = async (openId,filePath_1, filePath_2) => {
   return new Promise((resolve, reject) => {
@@ -94,14 +73,11 @@ export const downloadImage = (fileName) => {
   });
 };
 
-export const detailRequest = async (name) => { //已知钱币名称获取钱币具体信息
+export const detailRequest = async (coinId) => { //已知钱币名称获取钱币具体信息
   return new Promise((resolve, reject) => {
     wx.request({
-      method: 'post',
-      url: `${baseUrl}/detail`,
-      data:{
-        Name:name
-      },
+      method: 'get',
+      url: `${baseUrl}/coins/${coinId}`,
       success: res => {
         resolve(res.data)
       },
@@ -134,11 +110,8 @@ export const historyRequest = async (openId) => { //已知钱币名称获取钱�
 export const saveRequest = async (openId) => { //获取收藏信息
   return new Promise((resolve, reject) => {
     wx.request({
-      method: 'post',
-      url: `${baseUrl}/save`,
-      data:{
-        openId:openId
-      },
+      method: 'get',
+      url: `${baseUrl}/favorites/${openId}`,
       success: res => {
         resolve(res.data)
       },
@@ -149,15 +122,11 @@ export const saveRequest = async (openId) => { //获取收藏信息
   })
 }
 
-export const whetherIsSave = async (openId,coinName) => { //获取收藏信息
+export const whetherIsSave = async (openId,coinId) => { //获取收藏信息
   return new Promise((resolve, reject) => {
     wx.request({
-      method: 'post',
-      data:{
-        openId:openId,
-        name:coinName
-      },
-      url: `${baseUrl}/whetherIsSave`,
+      method: 'get',
+      url: `${baseUrl}/favorite/${openId}/${coinId}`,
       success: res => {
         resolve(res.data)
       },
@@ -168,14 +137,11 @@ export const whetherIsSave = async (openId,coinName) => { //获取收藏信息
   })
 }
 
-export const classifyRequest = async (index) => { //分类信息
+export const classifyRequest = async () => { //分类信息
   return new Promise((resolve, reject) => {
     wx.request({
-      method: 'post',
-      url: `${baseUrl}/classify`,
-      data:{
-        Index:index
-      },
+      method: 'GET',
+      url: `${baseUrl}/class`,
       success: res => {
         resolve(res.data)
         console.log("classify: ",res.data)
@@ -187,22 +153,58 @@ export const classifyRequest = async (index) => { //分类信息
   })
 }
 
-export const savePost = async (openId,name,isSave) => { //发送保存
+export const CoinsResource = async (index) => { //分类信息
+  return new Promise((resolve, reject) => {
+    wx.request({
+      method: 'GET',
+      url: `${baseUrl}/class/${index}`,
+      success: res => {
+        resolve(res.data)
+        console.log("CoinsResource: ",res.data)
+      },
+      fail: error => {
+        reject(error)
+      },
+    })
+  })
+}
+
+export const savePost = async (openId,coinId) => { //发送保存
   return new Promise((resolve, reject) => {
     wx.request({
       method: 'post',
-      url: `${baseUrl}/toSave`,
-      data:{
-        openId: openId,
-        name:name,
-        isSave:isSave
-      },
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      url: `${baseUrl}/favorite/${openId}/${coinId}`,
       success: res => {
         resolve(res.data)
         console.log(res.data)
+        wx.showModal({
+          title: '提示',
+          content: '收藏成功',
+          showCancel: false, // 不显示取消按钮
+          confirmText: '确定' // 确认按钮文字
+        });
+      },
+      fail: error => {
+        reject(error)
+      },
+    })
+  })
+}
+
+export const saveDelete = async (openId,coinId) => { //发送保存
+  return new Promise((resolve, reject) => {
+    wx.request({
+      method: 'delete',
+      url: `${baseUrl}/favorite/${openId}/${coinId}`,
+      success: res => {
+        resolve(res.data)
+        console.log(res.data)
+        wx.showModal({
+          title: '提示',
+          content: '取消收藏',
+          showCancel: false, // 不显示取消按钮
+          confirmText: '确定' // 确认按钮文字
+        });
       },
       fail: error => {
         reject(error)

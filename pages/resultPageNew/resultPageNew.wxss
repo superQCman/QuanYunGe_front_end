@@ -68,12 +68,32 @@
   font-size: 40rpx;
 }
 
+.textSize_30{
+  font-size: 30rpx;
+}
+
 .textBox_center .Img{
   display: flex;
   justify-content: center;
   align-items: center;
   height: 300rpx;
-  width: 300rpx;
+  width: 550rpx;
+}
+
+.more {
+  display: block;
+}
+
+.see-both{
+  color: #9e706a;
+}
+
+.introduce {
+  display: -webkit-box;  /* 小程序支持 -webkit-box */
+  -webkit-line-clamp: 4;  /* 限制显示三行 */
+  -webkit-box-orient: vertical;  /* 垂直排列 */
+  overflow: hidden;  /* 隐藏超出部分 */
+  text-overflow: ellipsis;  /* 超出部分显示省略号 */
 }
 
 .articleBox{

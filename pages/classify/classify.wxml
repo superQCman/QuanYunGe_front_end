@@ -2,8 +2,10 @@
 <BackButton style="opacity:0;height: 0;"></BackButton>
 <view class="coin-lable">
   <view class="coin-left">
-    <view class="p" wx:for="{{categories}}" wx:key="index" bindtap="selectCategory" data-index="{{index}}">
-      <view class="same-block {{selectedIndex === index ? 'color' : ''}}"><text>{{item}}</text></view>
+    <view class="p" wx:for="{{categories}}" wx:key="class_id" wx:for-item="item" bindtap="selectCategory" data-index="{{item.class_id}}">
+      <view class="same-block {{selectedIndex === item.class_id ? 'color' : ''}}">
+        <text>{{item.class_name}}</text>
+      </view>
     </view>
   </view>
 
@@ -15,13 +17,10 @@
       <view class="see-both" bindtap="toggleMore">{{isMore ? '收起详情' : '展开详情'}}</view>
     </view>
     <view style="margin: 30rpx;list-style-type: none;margin-left: 0rpx;">
-      <view wx:for="{{items}}" wx:key="index" class="li" data-outer-index="{{index}}">
-        <view style="font-weight: bold;">{{item.name}}</view>
-        <view class="coin-box">
-          <span class="item" wx:for="{{item.value}}" wx:for-item="innerItem" wx:for-index="innerIndex" wx:key="innerIndex" bind:tap="goToResult" data-inner-index="{{innerIndex}}" data-outer-index="{{index}}">
-            {{innerItem}}
-          </span>
-        </view>
+      <view class="coin-box">
+        <span class="item" wx:for="{{items}}" wx:for-item="innerItem" wx:for-index="innerIndex" wx:key="coin_id" bindtap="goToResult" data-inner-index="{{innerItem.coin_id}}" data-name="{{innerItem.coin_name}}">
+          {{innerItem.coin_name}}
+        </span>
       </view>
     </view>
   </view>

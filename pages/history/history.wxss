@@ -59,7 +59,7 @@
   margin-top: 20rpx;
   height:auto;
   width: 350rpx;
-  margin-left: 30rpx;
+  margin-left: 5rpx;
   margin-right: 30rpx;
   flex-wrap: wrap; /* 允许子元素换行 */
 }
@@ -103,8 +103,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200rpx;
-  width: 200rpx;
+  height: 120rpx;
+  width: 215rpx;
 }
 
 .articleBox{
