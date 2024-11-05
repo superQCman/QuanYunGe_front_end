@@ -37,7 +37,7 @@ Page({
       "userInfo.avatarUrl": avatarUrl,
       hasUserInfo: nickName && avatarUrl && avatarUrl !== defaultAvatarUrl,
     })
-    this.saveAvatarUrl();
+    this.saveAvatarUrl();    
   },
   saveAvatarUrl(){
     wx.setStorageSync('avatarUrl', this.data.userInfo.avatarUrl);
@@ -60,21 +60,6 @@ Page({
       });
     }
   },
-  // async getConfig(){
-  //   try {
-  //     const data=await configRequest();
-  //     this.setData({
-  //       imageUrl:data.data.imageUrl
-  //     })
-  //     setColor(data.data.color)
-  //   } catch (error) {
-  //     wx.showToast({
-  //       title: '错误请求',
-  //       icon:"error",
-  //       duration:2000
-  //     })
-  //   }
-  // },
   onInputChange(e) {
     const nickName = e.detail.value
     const {
@@ -159,16 +144,15 @@ Page({
   },
   goToNextPage() {
     console.log("传输tempImagePath：",this.data.tempImagePath);
-    if (this.data.tempImagePath.length == 2) {
+    if (this.data.tempImagePath.length == 1) {
       const ImagePath_1 = this.data.tempImagePath[0];
-      const ImagePath_2 = this.data.tempImagePath[1];
+      // const ImagePath_2 = this.data.tempImagePath[1];
       this.setData({
         tempImagePath: []
       })
       console.log("tempfilePath:", this.data.tempImagePath.length)
-      const coinName = "";
       wx.navigateTo({
-        url: `../resultPageNew/resultPageNew?ImagePath_1=${ImagePath_1}&ImagePath_2=${ImagePath_2}&coinName=${coinName}&isSave=${true}`,
+        url: `../crop/crop?ImagePath_1=${ImagePath_1}`,
       })
     }
   },
@@ -226,24 +210,23 @@ Page({
       });
   
       // 检查 tempImagePath 数组的长度，如果已经有两个图片地址了，就不再继续
-      if (tempImagePath.length === 2) {
+      if (tempImagePath.length === 1) {
         console.log('已选择两个图片，停止拍摄');
         this.goToNextPage();
-        return;
       }
   
       // 提示用户是否继续拍照
-      wx.showModal({
-        title: '继续拍照',
-        content: '是否继续拍摄下一张照片？',
-        showCancel: false,
-        success: (res) => {
-          if (res.confirm) {
-            // 用户点击了“确定”按钮，继续拍摄下一张照片
-            this.handleSelectPhoto();
-          }
-        }
-      });
+      // wx.showModal({
+      //   title: '继续拍照',
+      //   content: '是否继续拍摄下一张照片？',
+      //   showCancel: false,
+      //   success: (res) => {
+      //     if (res.confirm) {
+      //       // 用户点击了“确定”按钮，继续拍摄下一张照片
+      //       this.handleSelectPhoto();
+      //     }
+      //   }
+      // });
     });
   },
   

@@ -12,7 +12,7 @@
         </view>
       </view>
       <view class="textBox_center">
-        <text class="text textSize_70" style="font-weight:bold;">{{coinName}}</text>
+        <text class="text textSize_60" style="font-weight:bold;">{{coinName}}</text>
       </view>
 
       <view class="textBox_center">

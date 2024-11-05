@@ -1,6 +1,6 @@
 // pages/resultPageNew/resultPageNew.js
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
-import {uploadImageRequest,downloadImage,detailRequest,savePost,saveDelete,whetherIsSave} from "../../utils/request"
+import {uploadImageRequest,historyPost,detailRequest,savePost,saveDelete,whetherIsSave,getCoinId} from "../../utils/request"
 Page({
   /**
    * 页面的初始数据
@@ -36,19 +36,23 @@ Page({
       });
       const coinName = e.coinName;
       const ImagePath_1 = e.ImagePath_1;
-      const ImagePath_2 = e.ImagePath_2;
+      // const ImagePath_2 = e.ImagePath_2;
       const coinId = e.coinId;
-      this.checkSave(coinId)
-      console.log("coinName: ",coinName,"\nImagePath_1: ",ImagePath_1,"\nImagePath_2:",ImagePath_2);
-      this.setData({
-        coinName: coinName,
-        ImagePath_1: ImagePath_1,
-        ImagePath_2:ImagePath_2,
-        coinId: coinId
-      })
-      if(ImagePath_1.trim() !== "" && ImagePath_2.trim() !== "" && coinName.trim() === ""){
+      if(coinId){
+        this.checkSave(coinId)
+        this.setData({
+          coinName:coinName,
+          coinId:coinId
+        })
+      }
+      console.log("coinName: ",coinName,"\nImagePath_1: ",ImagePath_1);
+      
+      if(ImagePath_1){
+        this.setData({
+          ImagePath_1: ImagePath_1,
+        })
         this.handleUploadImage();
-      } else if (coinName.trim() !== "") { // 已知钱币名称获取详细信息
+      } else if (coinName) { // 已知钱币名称获取详细信息
         this.getDetail();
       }
   },
@@ -133,6 +137,7 @@ Page({
 
   async getDetail(){
     try {
+      console.log("coinId: ",this.data.coinId)
       const data = await detailRequest(this.data.coinId);
       console.log(data);
       let version = []
@@ -154,6 +159,7 @@ Page({
       version.push(item_diameter);
       console.log("version: ",version);
       this.setData({
+        coinName:data.coin_name,
         history: data.coin_story,
         version: version,
       });
@@ -234,23 +240,21 @@ Page({
       const {
         openId
       } = app.globalData.userInfo;
-      const data = await uploadImageRequest(openId,this.data.ImagePath_1,this.data.ImagePath_2)
-      console.log(data);
+      console.log("openId: ",openId)
+      const data = await uploadImageRequest(this.data.ImagePath_1)
+      // console.log(data);
+      const data_id = await getCoinId(data.x1,data.y1,data.x2,data.y2);
+      console.log(data_id);
+      const post_history = await historyPost(openId,data_id.coin_id);
+      console.log("post history: ",post_history)
       this.setData({
-        isLoading: false,
-        coinName:data.coinName,
-        value: data.value,
-        history: data.history,
-        version: data.version
-      });
-      console.log(data.fileName);
-      console.log("id",data.id);
-      const TempImagPath = await downloadImage(data.fileName);
-
-      this.setData({
-        TempImagPath: TempImagPath
+        coinId:data_id.coin_id
       })
+      this.checkSave(data_id.coin_id)
+      this.getDetail();
+      
     }  catch (error) {
+      console.log("error: ",error)
       wx.showToast({
         title: '错误请求',
         duration: 2000,

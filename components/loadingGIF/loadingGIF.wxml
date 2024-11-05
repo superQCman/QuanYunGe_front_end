@@ -1,0 +1,9 @@
+<!--components/loadingGIF/loadingGIF.wxml-->
+<block>
+  <BackButton style="opacity:0;height: 50rpx;"></BackButton>
+  <view class="container">
+    <image src="{{gifPath}}" mode="widthFix" class="gif-image"></image>
+    <text class="text" >加载中，请稍等！</text>
+  </view>
+  
+</block>

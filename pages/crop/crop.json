@@ -5,7 +5,7 @@
     "Background": "/components/background/background",
     "Name": "/components/name/name",
     "buttonText":"/components/buttonText/buttonText",
-    "Loading":"/components/loadingGIF/loadingGIF",
+    "Loading":"/components/loading/loading",
     "NameTrans":"/components/name_1/name_1"
   }
 }

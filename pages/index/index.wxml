@@ -42,8 +42,8 @@
     <view class="qrcode">
       <image style="width: 400rpx; height:400rpx;" src="../../image/拍照.png" mode="widthFix" bind:tap="handleSelectPhoto"></image>
     </view>
-    <text class="text">已上传{{tempImagePath.length}}张</text>
-    <text class="text">（总共需要正反两张）</text>
+    <!-- <text class="text">已上传{{tempImagePath.length}}张</text>
+    <text class="text">（总共需要正反两张）</text> -->
     <buttonText></buttonText>
   </view>
 

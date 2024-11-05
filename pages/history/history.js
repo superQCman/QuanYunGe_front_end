@@ -58,23 +58,38 @@ Page({
       console.log('openID: ', openId)
       const data = await historyRequest(openId);
       console.log(data);
-      this.setData({
-        coinName: data.coinName,
-        coinID: data.ID,
-        time: data.time
-      });
-      const TempImagPath = [];
-      console.log("fileName.length: ",data.fileName.length);
-
-      for(let i=0; i<data.fileName.length;i++){
-        TempImagPath[i] = await downloadImage(data.fileName[i]);
+      console.log(data.length)
+      let coin_name = [];
+      let coin_id = [];
+      let coin_photo = [];
+      for(let i = 0;i<data.length;i++){
+        coin_name.push(data[i].coin_name);
+        coin_id.push(data[i].coin_id);
+        coin_photo.push(data[i].rec_photo);
       }
+      console.log(coin_name)
+      this.setData({
+        coinName: coin_name,
+        coinID: coin_id,
+      });
+      console.log("coin_photo: ",coin_photo)
+      let TempImagPath = []
+      for(let i=0; i<data.length;i++){
+        try{
+          console.log("coinId: ",coin_id[i])
+          TempImagPath[i] = await this.savePhoto(coin_photo[i],coin_id[i]);
+        }catch(error){
+          console.log("error: ",error)
+        }
+      }
+      console.log(TempImagPath)
       
       this.setData({
-        isLoading: false,
+        isLoading:false,
         TempImagPath: TempImagPath
       })
     }catch(error){
+      console.log("error: ",error)
       wx.showToast({
         title: '错误请求',
         duration: 2000,

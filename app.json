@@ -16,6 +16,12 @@
       "pages": [
         "history"
       ]
+    },
+    {
+      "root": "pages/crop",
+      "pages": [
+        "crop"
+      ]
     }
   ],
   "window": {

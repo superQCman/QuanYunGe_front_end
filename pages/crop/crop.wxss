@@ -1,0 +1,93 @@
+/* pages/crop/crop.wxss */
+/* Base container for the cropping interface */
+.crop-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* The content that holds the image and the clipping elements */
+.crop-content {
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* The image loaded within the cropping area, with absolute positioning */
+.pos-absolute {
+  position: absolute;
+}
+
+/* Mask layer for the non-cropping area */
+.mask-bg {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 1;
+}
+
+/* Clip path region where the cropped image is displayed */
+.clip-path {
+  position: absolute;
+  overflow: hidden;
+  border: 2px solid #fff; /* White border around the clipping area */
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+/* The cropping box frame with corner controls for resizing */
+.clip-box {
+  position: absolute;
+  border: 2px solid #00BFFF; /* Border color for the clipping box */
+  z-index: 3;
+  box-sizing: border-box;
+}
+
+/* Corner controls for resizing the cropping box */
+.corner-area {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: #00BFFF; /* Sky blue color for corner handles */
+  border-radius: 50%;
+  z-index: 4;
+}
+
+/* Positioning each corner handle */
+.left-top {
+  top: -10px;
+  left: -10px;
+  cursor: nwse-resize;
+}
+
+.right-top {
+  top: -10px;
+  right: -10px;
+  cursor: nesw-resize;
+}
+
+.right-bottom {
+  bottom: -10px;
+  right: -10px;
+  cursor: nwse-resize;
+}
+
+.left-bottom {
+  bottom: -10px;
+  left: -10px;
+  cursor: nesw-resize;
+}
+.usermotto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.picture{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200rpx;
+  width: 200rpx;
+}

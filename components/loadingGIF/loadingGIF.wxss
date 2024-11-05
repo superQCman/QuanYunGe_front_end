@@ -1,0 +1,13 @@
+/* components/loadingGIF/loadingGIF.wxss */
+.gif-image {
+  width: 100%;
+  height: auto;
+}
+
+.text{
+  font-size: 50rpx; 
+  color: #813A02; 
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}

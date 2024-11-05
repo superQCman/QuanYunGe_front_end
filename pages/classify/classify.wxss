@@ -35,7 +35,8 @@
   padding: 20rpx;
 }
 .item{
-  margin: 10rpx;
+  margin: 20rpx;
+  margin-top: 30rpx;
   font-size: 25rpx;
   margin-left: 10rpx;
 }

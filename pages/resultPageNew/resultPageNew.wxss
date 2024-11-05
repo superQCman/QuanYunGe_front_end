@@ -60,6 +60,10 @@
   font-size: 70rpx;
 }
 
+.textSize_60{
+  font-size: 60rpx;
+}
+
 .textSize_50{
   font-size: 50rpx;
 }

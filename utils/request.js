@@ -22,22 +22,49 @@ export const sendUsername = async (username, openId) => {
   });
 };
 
-export const uploadImageRequest = async (openId,filePath_1, filePath_2) => {
+export const uploadImageRequest = async (filePath_1) => {
   return new Promise((resolve, reject) => {
+    console.log(filePath_1)
     const fileSystemManager = wx.getFileSystemManager();
 
     // 读取文件并转换为Base64
     const image1Base64 = fileSystemManager.readFileSync(filePath_1, 'base64');
-    const image2Base64 = fileSystemManager.readFileSync(filePath_2, 'base64');
+    // const image2Base64 = fileSystemManager.readFileSync(filePath_2, 'base64');
 
     // 使用 wx.request 发送POST请求，包含Base64数据
     wx.request({
-      url: `${baseUrl}/uploadImage`,
+      url: `${baseUrl}/coin_recognition`,
       method: 'POST',
       data: {
-        openId: openId,
-        image1: image1Base64,
-        image2: image2Base64
+        image: image1Base64,
+        // image2: image2Base64
+      },
+      header: {
+        'Content-Type': 'application/json' // 设置为JSON格式
+      },
+      success: (res) => {
+        resolve(res.data);
+      },
+      fail: (error) => {
+        reject(error);
+        console.log("error: ",error)
+      }
+    });
+  });
+};
+
+export const getCoinId = async (x1,y1,x2,y2) => {
+  return new Promise((resolve, reject) => {
+
+    // 使用 wx.request 发送POST请求，包含Base64数据
+    wx.request({
+      url: `${baseUrl}/coin_recognition`,
+      method: 'get',
+      data: {
+        x1:x1,
+        y1:y1,
+        x2:x2,
+        y2:y2
       },
       header: {
         'Content-Type': 'application/json' // 设置为JSON格式
@@ -88,14 +115,26 @@ export const detailRequest = async (coinId) => { //已知钱币名称获取钱�
   })
 }
 
-export const historyRequest = async (openId) => { //已知钱币名称获取钱币具体信息
+export const historyRequest = async (openId) => { //获取收藏信息
+  return new Promise((resolve, reject) => {
+    wx.request({
+      method: 'get',
+      url: `${baseUrl}/recognition/${openId}/${0}`,
+      success: res => {
+        resolve(res.data)
+      },
+      fail: error => {
+        reject(error)
+      },
+    })
+  })
+}
+
+export const historyPost = async (openId,coin_id) => { //已知钱币名称获取钱币具体信息
   return new Promise((resolve, reject) => {
     wx.request({
       method: 'post',
-      url: `${baseUrl}/history`,
-      data:{
-        openId:openId
-      },
+      url: `${baseUrl}/recognition/${openId}/${coin_id}`,
       success: res => {
         resolve(res.data)
         console.log("history:",res.data)
