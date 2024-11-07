@@ -77,7 +77,7 @@ Page({
       for(let i=0; i<data.length;i++){
         try{
           console.log("coinId: ",coin_id[i])
-          TempImagPath[i] = await this.savePhoto(coin_photo[i],coin_id[i]);
+          TempImagPath[i] = await this.savePhoto(coin_photo[i],coin_id[i],"history");
         }catch(error){
           console.log("error: ",error)
         }
@@ -134,9 +134,9 @@ Page({
     },
 
     // 异步保存照片的函数
-    async savePhoto(coin_photo, coin_id) {
+    async savePhoto(coin_photo, coin_id, other) {
       const fileSystemManager = wx.getFileSystemManager();
-      const filePath = `${wx.env.USER_DATA_PATH}/${coin_id}.png`;
+      const filePath = `${wx.env.USER_DATA_PATH}/${other}_${coin_id}.png`;
       const base64Data = coin_photo;
 
       return new Promise((resolve, reject) => {
@@ -199,7 +199,7 @@ Page({
       for(let i=0; i<data.length;i++){
         try{
           console.log("coinId: ",coin_id[i])
-          TempImagPath[i] = await this.savePhoto(coin_photo[i],coin_id[i]);
+          TempImagPath[i] = await this.savePhoto(coin_photo[i],coin_id[i],"save");
         }catch(error){
           console.log("error: ",error)
         }
