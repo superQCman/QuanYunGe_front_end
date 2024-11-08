@@ -1,0 +1,56 @@
+/* pages/generate/generate.wxss */
+.container-sub{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rpx;
+  width: 100%;
+  margin-bottom: 100rpx;
+}
+
+.textBox_center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  height:auto;
+  width: auto;
+}
+
+.textBox_center .Img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 550rpx;
+  width: 550rpx;
+}
+.nickname-wrapper {
+  display: flex;
+  width: 90%;
+  padding: 16px;
+  box-sizing: border-box;
+  border-top: .5px solid rgba(0, 0, 0, 0.1);
+  border-bottom: .5px solid rgba(0, 0, 0, 0.1);
+  color: black;
+  margin:10rpx;
+}
+.nickname-label {
+  width: 105px;
+}
+.nickname-input {
+  flex: 1;
+}
+.text{
+  color: #813A02;
+  white-space: normal; 
+  word-break: break-word;
+  max-width: 100%; /* 防止超出父容器 */
+}
+
+.textSize_70{
+  font-size: 70rpx;
+}
+.usermotto {
+  margin-top: 50px;
+}

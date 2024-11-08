@@ -7,7 +7,7 @@ App({
   globalData: {
     userInfo: {
       avatarUrl: defaultAvatarUrl, // 默认头像地址
-      nickName: '用户', // 用户昵称
+      nickName: '', // 用户昵称
       openId: wx.getStorageSync('openid') // 从缓存中读取 openId
     },
     LogIn: false
@@ -16,7 +16,7 @@ App({
   onLaunch() {
     this.userInfo = {
       avatarUrl: defaultAvatarUrl,
-      nickName: '用户',
+      nickName: '',
       openId: ''
     }
     // 展示本地存储能力

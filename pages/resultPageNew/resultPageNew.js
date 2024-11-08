@@ -21,9 +21,10 @@ Page({
     version:[],
     transList:[],
     unit: ['年','g','mm'],
-  meanPrice:'20',
-  isLoading: true,
-  isSave: false
+    meanPrice:'20',
+    isLoading: true,
+    isSave: false,
+    detection:1
   },
 
   /**
@@ -50,6 +51,7 @@ Page({
       if(ImagePath_1){
         this.setData({
           ImagePath_1: ImagePath_1,
+          detection : 2
         })
         this.handleUploadImage();
       } else if (coinName) { // 已知钱币名称获取详细信息
@@ -266,7 +268,9 @@ Page({
     }
   },
   back() {
-    wx.navigateBack({})
+    wx.navigateBack({
+      delta: this.data.detection
+    })
   },
   async save(){
     const app = getApp();

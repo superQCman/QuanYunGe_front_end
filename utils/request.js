@@ -253,13 +253,17 @@ export const saveDelete = async (openId,coinId) => { //发送保存
 }
 
 
-export const dynastyRequest = async (index) => { //朝代介绍
+export const sendText = async (openId, text1, text2, image) => { 
+  console.log("test1: ",text1);
+  console.log("test2: ",text2);
   return new Promise((resolve, reject) => {
     wx.request({
-      method: 'get',
-      url: `${baseUrl}/dynasty`,
+      method: 'post',
+      url: `${baseUrl}/coin_generation/${openId}`,
       data:{
-        Index:index
+        text1: text1,
+        text2: text2,
+        image: image
       },
       success: res => {
         resolve(res.data)
@@ -271,3 +275,21 @@ export const dynastyRequest = async (index) => { //朝代介绍
     })
   })
 }
+
+export const getOwn = async (ownId) => { 
+  return new Promise((resolve, reject) => {
+    wx.request({
+      method: 'get',
+      url: `${baseUrl}/generated_coin/${ownId}`,
+      success: res => {
+        resolve(res.data)
+        console.log("article:",res.data)
+      },
+      fail: error => {
+        reject(error)
+      },
+    })
+  })
+}
+
+

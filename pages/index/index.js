@@ -211,7 +211,7 @@ Page({
   
       // 检查 tempImagePath 数组的长度，如果已经有两个图片地址了，就不再继续
       if (tempImagePath.length === 1) {
-        console.log('已选择两个图片，停止拍摄');
+        console.log('已选择一张图片，停止拍摄');
         this.goToNextPage();
       }
   

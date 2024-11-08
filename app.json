@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/home/home",
-    "pages/classify/classify"
+    "pages/classify/classify",
+    "pages/generate/generate"
   ],
   "subPackages": [
     {
@@ -44,6 +45,11 @@
         "selectedIconPath": "./image/分类_1.png",
         "iconPath": "./image/分类.png",
         "pagePath": "pages/classify/classify"
+      },
+      {
+        "selectedIconPath": "./image/AI_1.png",
+        "iconPath": "./image/AI.png",
+        "pagePath": "pages/generate/generate"
       },
       {
         "selectedIconPath": "./image/我的_1.png",
