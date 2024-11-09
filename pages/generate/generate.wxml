@@ -1,14 +1,20 @@
 <!--pages/generate/generate.wxml-->
-<BackButton style="opacity:0;height: 80rpx;"></BackButton>
+<BackButton style="opacity:0;height: 20rpx;"></BackButton>
 <Background>
   <Loading wx:if="{{isloading}}"></Loading>
   <view wx:else class="container">
     <view class="container-sub"></view>
     <view class="textBox_center">
-        <text class="text textSize_70" style="font-weight:bold;">图片生成</text>
+        <text class="text textSize_70" style="font-weight:bold;">泉韵坊</text>
+    </view>
+    <view class="textBox_center"  wx:if="{{getImage}}">
+        <text class="textSize_30">（点击图片保存到相册）</text>
     </view>
     <view class="textBox_center" wx:if="{{getImage}}">
-      <image class="Img" src="{{TempImagPath}}" />
+      <image class="Img" src="{{TempImagPath}}" bind:tap="saveIntoAlbum"/>
+    </view>
+    <view class="textBox_center" wx:if ="{{tempImagePath.length === 0 && !getImage}}">
+        <text class="textSize_30">（点击上传图片）</text>
     </view>
     <view class="textBox_center" wx:if ="{{tempImagePath.length === 0 && !getImage}}">
       <image class="Img" src="../../image/拍照.png" mode="widthFix" bind:tap="handleSelectPhoto"></image>
@@ -16,12 +22,22 @@
     <view class="textBox_center" wx:if ="{{tempImagePath.length !== 0 && !getImage}}">
       <image class="Img" src="{{tempImagePath}}" />
     </view>
-    <view class="nickname-wrapper">
-      <text class="nickname-label">Text 1</text>
+    <view class="textBox_center" wx:if="{{getImage}}">
+      <text class="text textSize_50" style="font-weight:bold;">灵感来源</text>
+    </view>
+    <view class="textBox_center" style="background-color: rgb(235, 220, 209);"  wx:if="{{getImage}}">
+      <view wx:for="{{subCoinId}}" wx:for-index="index" wx:key="index" class="textBox_start" style="padding-bottom: 20rpx;" data-index="{{index}}" bind:tap="goToResult">
+        <view class="textBox_center" style="margin-right: 15rpx; margin-left: 15rpx;">
+          <image class="smallImg" src="{{subTempImagPath[index]}}" />
+        </view>
+      </view>
+    </view>
+    <view class="nickname-wrapper" wx:if="{{!getImage}}">
+      <text class="nickname-label">上方文字</text>
       <input class="nickname-input" maxlength="10" placeholder="请输入文字(最大输入长度为10)" bind:change="onInputChange_1"/>
     </view>
-    <view class="nickname-wrapper">
-      <text class="nickname-label">Text 2</text>
+    <view class="nickname-wrapper" wx:if="{{!getImage}}">
+      <text class="nickname-label">下方文字</text>
       <input class="nickname-input" maxlength="10" placeholder="请输入文字(最大输入长度为10)" bind:change="onInputChange_2"/>
     </view>
     <view class="usermotto" wx:if="{{!restart && submit_photo}}">

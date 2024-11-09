@@ -21,15 +21,12 @@
             <view class="textBox_start">
               <text class="text textSize_30" style="font-weight:bold;">钱币名：{{coinName[index]}}</text>
             </view>
-            <!-- <view class="textBox_start">
-              <text class="text textSize_30" style="font-weight:bold;">识别时间：</text>
-            </view> -->
-            <!-- <view class="textBox_start" style="margin-top: 10rpx;">
-              <text class="text textSize_30" style="font-weight:bold;">{{time[index]}}</text>
-            </view> -->
           </scroll-view>
         </view>
       </scroll-view>
+      <view class="usermotto" wx:if="{{isHistory}}">
+        <button style="background-color: #9C443A;" type="primary" bind:tap="clearUserHistory">清空历史记录</button>
+      </view>
     </view>
   </Background>
 </scroll-view>

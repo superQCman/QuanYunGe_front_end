@@ -1,11 +1,9 @@
 {
   "usingComponents": {
     "BackButton": "/components/backButton/backButton",
-    "Logo": "/components/logo/logo",
     "Background": "/components/background/background",
     "Name": "/components/name/name",
     "buttonText":"/components/buttonText/buttonText",
-    "Loading":"/components/loadingGIF/loadingGIF",
-    "NameTrans":"/components/name_1/name_1"
+    "Loading":"/components/loadingGIF/loadingGIF"
   }
 }

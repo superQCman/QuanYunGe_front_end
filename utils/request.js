@@ -292,4 +292,20 @@ export const getOwn = async (ownId) => {
   })
 }
 
+export const clearHistory = async (openId)=>{
+  return new Promise((resolve,reject) => {
+    wx.request({
+      method:'post',
+      url: `${baseUrl}/clear_recognition/${openId}`,
+      success: res => {
+        resolve(res.data)
+        console.log("clear :",res.data)
+      },
+      fail: error => {
+        reject(error)
+      },
+    })
+  })
+}
+
 

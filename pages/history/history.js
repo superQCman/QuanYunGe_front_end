@@ -1,6 +1,6 @@
 // pages/history/history.js
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
-import {historyRequest, downloadImage, saveRequest, whetherIsSave} from "../../utils/request"
+import {historyRequest, clearHistory, saveRequest, whetherIsSave} from "../../utils/request"
 Page({
   /**
    * 页面的初始数据
@@ -222,6 +222,33 @@ Page({
       }, 2000);
     }
   },
+  async clearUserHistory() {
+    wx.showModal({
+      title: '提示',
+      content: '是否确认清空历史记录',
+      complete: async (res) => { // 将 complete 的回调声明为 async
+        if (res.confirm) {
+          try {
+            const app = getApp();
+            const { openId } = app.globalData.userInfo;
+            const data = await clearHistory(openId);
+            if (data.clear === 1) {
+              this.setData({
+                coinName: [],
+                coinID: [],
+                TempImagPath: []
+              });
+            } else {
+              console.log("清除历史失败！");
+            }
+          } catch (error) {
+            console.error("清除历史记录时出错：", error);
+          }
+        }
+      }
+    });
+  },
+  
   back() {
     wx.navigateBack({})
   },

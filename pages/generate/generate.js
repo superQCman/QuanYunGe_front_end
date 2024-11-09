@@ -1,7 +1,6 @@
 // pages/generate/generate.js
 import {sendText, getOwn} from "../../utils/request"
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -9,6 +8,9 @@ Page({
     own_id: '',
     TempImagPath:'',
     tempImagePath: "",
+    subTempImagPath:[],
+    coin_name:[],
+    subCoinId:[],
     text1:'',
     text2:'',
     getImage:false,
@@ -127,6 +129,37 @@ Page({
       restart:true,
       isloading:false
     })
+    let coin_id = [];
+    let coin_name = [];
+    let coin_photo = [];
+    let subTempImagPath = [];
+    coin_id.push(photo.coin1_id.coin_id);
+    coin_id.push(photo.coin2_id.coin_id);
+    coin_id.push(photo.coin3_id.coin_id);
+    coin_name.push(photo.coin1_id.coin_name);
+    coin_name.push(photo.coin2_id.coin_name);
+    coin_name.push(photo.coin3_id.coin_name);
+    coin_photo.push(photo.coin1_id.coin_photo);
+    coin_photo.push(photo.coin2_id.coin_photo);
+    coin_photo.push(photo.coin3_id.coin_photo);
+    for(let i = 0;i<3;i++){
+      subTempImagPath[i] = await this.savePhoto(coin_photo[i],coin_id[i],"");
+    }
+    console.log(subTempImagPath)
+    this.setData({
+      subCoinId:coin_id,
+      subTempImagPath: subTempImagPath,
+      coin_name: coin_name
+    })
+  },
+  goToResult: function(e){
+    const Index = e.currentTarget.dataset.index; // index
+    console.log("index:", Index);
+    const ImagePath = "";
+    // this.checkSave(this.data.coinName[Index]);
+    wx.navigateTo({
+      url: `/pages/resultPageNew/resultPageNew?coinName=${this.data.coin_name[Index]}&ImagePath_1=${ImagePath}&ImagePath_2=${ImagePath}&coinId=${this.data.subCoinId[Index]}`,
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -193,7 +226,33 @@ Page({
       
     });
   },
+  saveIntoAlbum() {
+    console.log("this.data.TempImagPath: ", this.data.TempImagPath);
+    wx.authorize({
+      scope: 'scope.writePhotosAlbum',
+      success: () => { // 使用箭头函数
 
+        wx.saveImageToPhotosAlbum({
+          filePath: this.data.TempImagPath,
+          success: () => {
+            wx.showToast({
+              title: '已保存到相册',
+              icon: 'success'
+            });
+          },
+          fail: (err) => {
+            console.log("error: ", err);
+          }
+        });
+      }
+    });
+    fail: () => {
+      wx.showToast({
+        title: '保存失败',
+        icon: 'fail'
+      });
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

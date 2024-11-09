@@ -118,3 +118,6 @@
   background-color: rgb(235, 220, 209);
 }
 
+.usermotto {
+  margin-top: 50px;
+}

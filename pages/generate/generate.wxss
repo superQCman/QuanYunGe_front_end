@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 20rpx;
+  height: 10rpx;
   width: 100%;
   margin-bottom: 100rpx;
 }
@@ -13,9 +13,21 @@
   justify-content: center;
   align-items: center;
   margin-top: 20rpx;
-  margin-bottom: 20rpx;
+  margin-bottom: 40rpx;
   height:auto;
   width: auto;
+  border-radius: 20rpx;
+}
+
+.textBox_start{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 30rpx;
+  height: auto;
+  width: auto;
+  border-radius: 20rpx;
+  /* background-color: rgb(235, 220, 209); */
 }
 
 .textBox_center .Img{
@@ -24,6 +36,14 @@
   align-items: center;
   height: 550rpx;
   width: 550rpx;
+}
+
+.smallImg{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100rpx;
+  width: 180rpx;
 }
 .nickname-wrapper {
   display: flex;
@@ -51,6 +71,15 @@
 .textSize_70{
   font-size: 70rpx;
 }
+
+.textSize_50{
+  font-size: 50rpx;
+}
+
+.textSize_30{
+  font-size: 30rpx;
+}
 .usermotto {
   margin-top: 50px;
+  margin-bottom: 20rpx;
 }
